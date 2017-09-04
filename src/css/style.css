@@ -1,0 +1,15 @@
+body {
+    background-color: #f0f3f6;
+    background: url("../img/metal.jpg");
+    font-family: arial, helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    background-color: white;
+    min-height: 800px;
+    margin: 0 auto;
+    padding: .5em 2em 4em;
+    max-width: 1000px;
+}

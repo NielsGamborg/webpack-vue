@@ -1,0 +1,13 @@
+h3 {
+    text-transform: uppercase;
+}
+
+.left {
+    float: left;
+    margin: 2em 5% 2em 0;
+}
+
+.clear {
+    clear: both;
+    margin: 2em 0;
+}
