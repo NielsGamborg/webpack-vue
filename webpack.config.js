@@ -7,10 +7,11 @@ module.exports = {
         contentBase: './dist',
         proxy: {
             '/spot-service': {
-              target: 'http://devel06:8381',
-              secure: false        
+                target: 'http://devel06:8381',
+                pathRewrite: { '^/spot-service': '' },
+                secure: false
             }
-          }
+        }
     },
     entry: {
         app: './src/js/index.js',
