@@ -4,7 +4,13 @@ module.exports = {
     //entry: './src/index.js',
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: './dist'
+        contentBase: './dist',
+        proxy: {
+            '/spot-service': {
+              target: 'http://devel06:8381',
+              secure: false        
+            }
+          }
     },
     entry: {
         app: './src/js/index.js',

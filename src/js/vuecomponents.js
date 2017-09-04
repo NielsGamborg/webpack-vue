@@ -14,8 +14,8 @@ let button =  {
     },
     template:`
         <div>
-            <button v-on:click="diceRoll()">Go!</button>
-            <span>{{ this.outcome }}</span>
+            <button v-on:click="diceRoll()">Roll!</button>
+            <p>{{ this.outcome }}</p>
         </div>    
     `,
     methods: {
