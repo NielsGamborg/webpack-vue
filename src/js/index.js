@@ -7,6 +7,9 @@ import Vueapp from './vueapp.js';
 import {title, button, table} from './vuecomponents.js';
 import {timeFilter} from './vuefilters.js';
 
+/* External packages */
+import _ from 'lodash'
+
 /* Vanilla JS functions */  
 import {helloHelper} from './helperFunctions.js'
 
@@ -18,8 +21,8 @@ import '../img/metal.jpg';
 
 Vue.filter('toLocaleTime', timeFilter)
 Vue.component('header-box', title);
+Vue.component('table-box', table);
 Vue.component('button-box', button);
-Vue.component('list-box', table);
 Vue.use(VueResource);
 new Vue(Vueapp);
 
