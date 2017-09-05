@@ -33,17 +33,18 @@ h3 {
     text-transform: uppercase;
 }
 
-#typePicker{
+#userInput{
     padding: 1em 0;
 }
 
-#typePicker input, button{
+#userInput input, #userInput select, button{
     font-size: 16px;
     margin-right: 2em;
     padding: .2em .5em;
 }
 
 table {
+    border: 1px solid #ccc;
   border-collapse: collapse;
 }
 

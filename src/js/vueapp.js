@@ -10,7 +10,7 @@ export default {
         <div class="wrapper"> 
             <header-box :title='title'></header-box>
             <table-box></table-box>
-            <button-box></button-box>
+            <dice-box></dice-box>
         </div>
     `,
     methods: {
