@@ -1,11 +1,12 @@
-let title =  {
+
+const title =  {
     props: ['title'],
     template:`
         <h3>{{ this.title }}</h3>
     `,
 }
 
-let button =  {
+const button =  {
     props: [],
     data: function(){
         return{
@@ -25,4 +26,21 @@ let button =  {
     }
 }
 
-export {title, button};
+const table =  {
+    props: ['stamps'],
+    template:`
+        <div>
+            <table>
+                <tbody>
+                    <tr v-for="item in stamps">
+                        <td>{{ item.time | toLocaleTime }}</td>
+                        <td>{{ item.terminalName }}</td>
+                        <td>{{ item.wintidStempKodeTekst }}</td>
+                    </tr> 
+                </tbody>   
+            </table>
+        </div>   
+    `
+}
+
+export {title, button, table};

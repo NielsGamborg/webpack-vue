@@ -11,3 +11,19 @@ h3 {
     clear: both;
     margin: 2em 0;
 }
+
+
+/* CSS for single component table */
+table {
+  border-collapse: collapse;
+}
+
+tr:nth-child(even){
+    background-color: #f0f0f3;
+}
+
+td{
+    padding: .5em 1em;
+}
+
+
