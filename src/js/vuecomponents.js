@@ -34,7 +34,7 @@ const table = {
                 Show rows: <select v-model="stampNumbers">
                     <option value="20">20</option> 
                     <option value="100">100</option> 
-                    <option value="1000">1000</option> 
+                    <option value="1000">All</option> 
                 </select>
                 <br>
                 <br>

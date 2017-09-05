@@ -24,6 +24,7 @@ Vue.component('header-box', title);
 Vue.component('table-box', table);
 Vue.component('dice-box', dice);
 Vue.use(VueResource);
+
 new Vue(Vueapp);
 
 helloHelper('Webpack');
