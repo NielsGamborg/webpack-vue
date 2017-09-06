@@ -102,6 +102,11 @@ const Table = {
                 this.stamps = response.body;
                 this.error = false;
                 console.log('response.body', response.body);
+                /*router.push({
+                    query: {
+                        query: 'this.myQuery',
+                    }
+                });*/
             }, response => {
                 console.log('Error!', response);
                 this.stamps = {};

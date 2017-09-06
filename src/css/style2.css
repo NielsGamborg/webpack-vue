@@ -33,12 +33,14 @@ ul#menu{
 }
 
 #menu li a{
+    color: #223;
     display: block;
     padding: .3em 1em;
 }
 
 #menu li a:hover{
-    background-color: #f0f0f3
+    background-color: #f0f0f3;
+    color: black;
 }
 
 

@@ -6,10 +6,11 @@ import VueResource from 'vue-resource';
 Vue.use(VueRouter);
 Vue.use(VueResource);
 
-/* Own Vue stuff */
+/* Internal Vue stuff */
 import {Title, Table, Dice, Foo, Bar, Home, Page404} from './vuecomponents.js';
 import {timeFilter} from './vuefilters.js';
 
+Vue.filter('toLocaleTime', timeFilter)
 Vue.component('header-box', Title);
 
 const router = new VueRouter({
