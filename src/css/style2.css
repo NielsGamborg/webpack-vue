@@ -44,6 +44,11 @@ ul#menu {
     color: black;
 }
 
+#menu li a.router-link-exact-active {
+    background-color: #334;
+    color: white;
+}
+
 
 /* CSS for single component table */
 
