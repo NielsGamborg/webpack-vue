@@ -13,7 +13,7 @@ import {timeFilter} from './vuefilters.js';
 Vue.component('header-box', Title);
 
 const router = new VueRouter({
-    mode: 'history',
+    //mode: 'history', //Reload doesn't work with 'history mode'
     base: __dirname,
     routes: [
       { path: '/', component: Home },
