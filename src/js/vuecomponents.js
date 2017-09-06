@@ -71,7 +71,7 @@ const Table = {
     `,
     watch: {
         user: _.debounce(function() {
-            if (this.user !== '' || this.user !== null) {
+            if (this.user.length > 1) {
                 this.getData();
             }
         }, 300)
