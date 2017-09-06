@@ -51,7 +51,6 @@ const VueApp = new Vue({
                 <li><router-link to="/dice">Dice</router-link></li>
                 <li><router-link to="/easymoney">Easy money</router-link></li>
                 <li><router-link to="/foo">/foo</router-link></li>
-                <li><router-link to="/bar">/bar</router-link></li>
                 <router-link tag="li" to="/bar" :event="['mousedown', 'touchstart']">
                     <a>/bar</a>
                 </router-link>
