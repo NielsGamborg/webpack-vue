@@ -24,8 +24,8 @@ const router = new VueRouter({
     routes: [
         { path: '/', component: Table },
         { path: '/dice', component: Dice },
-        { path: '/foo', component: Foo, props: { someArray2: someArray2 } },
-        { path: '/bar', component: Bar },
+        { path: '/foo', components: { default: Foo, footer: Bar }, props: { someArray2: someArray2 } },
+        { path: '/bar', components: { default: Bar, footer: Foo } },
         { path: '/404', component: Page404 },
         { path: '*', redirect: '/404' }
     ]
@@ -39,7 +39,7 @@ const VueApp = new Vue({
     el: '#app',
     data: {
         stamps: {},
-        user: 'nig',
+        user: '',
         someArray: [2, 3, 5, 7, 11, 13, 13, 13, 17, 19],
         title: 'Testing vue, webpack and ecma script 6 imports',
     },
@@ -49,13 +49,16 @@ const VueApp = new Vue({
             <ul id="menu">
                 <li><router-link to="/">Home</router-link></li>
                 <li><router-link to="/dice">Dice</router-link></li>
-                <li><router-link to="/easymoney">Easy money</router-link></li>
                 <li><router-link to="/foo">/foo</router-link></li>
-                <router-link tag="li" to="/bar" :event="['mousedown', 'touchstart']">
-                    <a>/bar</a>
-                </router-link>
+                <li>
+                    <router-link tag="a" to="/bar" :event="['mousedown', 'touchstart']">
+                        <span>/bar</span>
+                    </router-link>
+                </li>
+                <li><router-link to="/easymoney">Easy money</router-link></li>
             </ul>
             <router-view class="view" :some-array="someArray"></router-view>
+            <router-view class="view 2" id="footer" name="footer"></router-view>
         </div>
     `,
     created: function() {
