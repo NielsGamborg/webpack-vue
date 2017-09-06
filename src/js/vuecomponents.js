@@ -12,6 +12,15 @@ const Title = {
     `,
 }
 
+const Page404 = { 
+    template: `
+    <div>
+        <h3>404</h3>
+        <p>The requested URL can't be found</p>
+    </div>    
+    `
+}
+
 
 const Home = { 
     props:['someArray'],
@@ -26,8 +35,10 @@ const Home = {
     </div>    
     `
 }
-const Foo = { template: '<div>foo</div>' }
-const Bar = { template: '<div>bar</div>' }
+
+const Foo = { template: '<div><h3>Foo</h3><p>foo</p></div>' }
+
+const Bar = { template: '<div><h3>Bar</h3><p>bar</p></div>' }
 
 const Table = {
     props: [],
@@ -113,6 +124,7 @@ const Dice = {
     },
     template: `
         <div>
+            <h3>Dice</h3>
             <button v-on:click="diceRoll()">Roll dice!</button>
             <p>{{ this.outcome }}</p>
         </div>    
@@ -125,4 +137,4 @@ const Dice = {
 }
 
 
-export { Title, Dice, Table, Foo, Bar, Home };
+export { Title, Dice, Table, Foo, Bar, Home, Page404 };
