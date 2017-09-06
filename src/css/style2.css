@@ -1,4 +1,4 @@
-h1{
+h1 {
     font-size: 24px;
 }
 
@@ -12,13 +12,13 @@ h1{
     margin: 2em 0;
 }
 
-.error{
+.error {
     background-color: #ffffcc;
     border: 1px solid #ccc;
     padding: 1em;
 }
 
-ul#menu{
+ul#menu {
     list-style-type: none;
     margin: 0;
     overflow: hidden;
@@ -26,44 +26,46 @@ ul#menu{
     width: 100%;
 }
 
-#menu li{
+#menu li {
     border: 1px solid #999;
     float: left;
     margin: 0 .5em 0 0;
 }
 
-#menu li a{
+#menu li a {
     color: #223;
     display: block;
     padding: .3em 1em;
+    text-decoration: none;
 }
 
-#menu li a:hover{
+#menu li a:hover {
     background-color: #f0f0f3;
     color: black;
 }
 
 
-
 /* CSS for single component table */
-#table-box{
+
+#table-box {
     border-bottom: 1px solid #ccc;
     border-top: 1px solid #ccc;
     margin: 2em 0;
     padding: 1em 0;
 }
 
-
 h3 {
     font-size: 18px;
     text-transform: uppercase;
 }
 
-#userInput{
+#userInput {
     padding: 1em 0;
 }
 
-#userInput input, #userInput select, button{
+#userInput input,
+#userInput select,
+button {
     font-size: 16px;
     margin-right: 2em;
     padding: .2em .5em;
@@ -71,15 +73,13 @@ h3 {
 
 table {
     border: 1px solid #ccc;
-  border-collapse: collapse;
+    border-collapse: collapse;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: #f0f0f3;
 }
 
-td{
+td {
     padding: .5em 1em;
 }
-
-
