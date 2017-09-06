@@ -11,6 +11,7 @@ import { helloHelper, diceRollHelper } from './helperFunctions.js'
 import fileData from './data.json';
 
 
+/* The Components  */
 const Title = {
     props: ['title'],
     template: `
@@ -18,61 +19,6 @@ const Title = {
     `,
 }
 
-const Page404 = {
-    template: `
-    <div>
-        <h3>404</h3>
-        <p>The requested URL can't be found</p>
-    </div>    
-    `
-}
-
-
-const Home = {
-    props: ['someArray'],
-    template: `
-    <div>
-        <h3>Home</h3>
-        <p>Somearray:</p>
-        <p>{{ this.someArray }}</p>
-        <ul>
-            <li v-for="item in someArray">{{ item }}</li>
-        </ul>
-    </div>    
-    `,
-    created: function() {
-        helloHelper("from 'Home' component in vuecomponents.js");
-    }
-}
-
-const Foo = {
-    props: ['someArray', 'someArray2'],
-    template: `
-    <div>
-        <h3>Foo</h3>
-        <p>someArray passed as dynamic prop through 'router-view'-tag in the maintemplate:<br> {{ someArray }}</p>
-        <p>someArray2 passed as static prop through routes configuration in VueRouter: <br>{{ someArray2 }}</p>
-    </div>`
-}
-
-const Bar = {
-    template: `
-        <div>
-            <h3>Bar</h3>
-            <p>bar</p>
-            <ul id="inlinemenu">
-                <li><router-link to="/">Home</router-link></li>
-                <li><router-link to="/stamps">Stamps</router-link></li>
-                <li><router-link to="/dice">Dice</router-link></li>
-                <li><router-link to="/easymoney">Easy money</router-link></li>
-                <li><router-link to="/foo">/foo</router-link></li>
-                <li><router-link to="/bar">/bar</router-link></li>
-                <router-link tag="li" to="/bar" :event="['mousedown', 'touchstart']">
-                    <a>/bar</a>
-                </router-link>
-            </ul>
-        </div>`
-}
 
 const Table = {
     props: [],
@@ -159,6 +105,9 @@ const Table = {
                 console.log("user doesn't exist")
             }
         }
+    },
+    created: function() {
+        helloHelper("from 'Table' component in vuecomponents.js");
     }
 }
 
@@ -195,4 +144,57 @@ const Dice = {
 }
 
 
-export { Title, Dice, Table, Foo, Bar, Home, Page404 };
+const Foo = {
+    props: ['someArray', 'someArray2'],
+    data: function() {
+        return {
+            fileData: fileData
+        }
+    },
+    template: `
+    <div>
+        <h3>Foo</h3>
+        <p>someArray passed as dynamic prop through 'router-view'-tag in the maintemplate:<br> {{ someArray }}</p>
+        <p>someArray2 passed as static prop through routes configuration in VueRouter: <br>{{ someArray2 }}</p>
+        <p>someArray passed as prop through 'router-view'-tag in the maintemplate:</p>
+        <ul>
+            <li v-for="item in someArray">{{ item }}</li>
+        </ul>
+        <p>Static data imported into vue from data.json</p>
+        <ul>
+            <li v-for="(item, index) in fileData" v-if="index < 5 ">{{ item }}</li>
+        </ul>
+    </div>`
+}
+
+
+const Bar = {
+    template: `
+        <div>
+            <h3>Bar</h3>
+            <p>bar</p>
+            <ul id="inlinemenu">
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/stamps">Stamps</router-link></li>
+                <li><router-link to="/dice">Dice</router-link></li>
+                <li><router-link to="/easymoney">Easy money</router-link></li>
+                <li><router-link to="/foo">/foo</router-link></li>
+                <li><router-link to="/bar">/bar</router-link></li>
+                <router-link tag="li" to="/bar" :event="['mousedown', 'touchstart']">
+                    <a>/bar</a>
+                </router-link>
+            </ul>
+        </div>`
+}
+
+
+const Page404 = {
+    template: `
+    <div>
+        <h3>404</h3>
+        <p>The requested URL can't be found</p>
+    </div>    
+    `
+}
+
+export { Title, Dice, Table, Foo, Bar, Page404 };

@@ -1,5 +1,5 @@
 h1 {
-    font-size: 24px;
+    font-size: 18px;
 }
 
 .left {
@@ -22,7 +22,7 @@ ul#menu {
     list-style-type: none;
     margin: 0;
     overflow: hidden;
-    padding: 0;
+    padding: 1em 0 2em;
     width: 100%;
 }
 
@@ -46,13 +46,6 @@ ul#menu {
 
 
 /* CSS for single component table */
-
-#table-box {
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #ccc;
-    margin: 2em 0;
-    padding: 1em 0;
-}
 
 h3 {
     font-size: 18px;

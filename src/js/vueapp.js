@@ -7,7 +7,7 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 
 /* Internal Vue stuff */
-import { Title, Table, Dice, Foo, Bar, Home, Page404 } from './vuecomponents.js';
+import { Title, Table, Dice, Foo, Bar, Page404 } from './vuecomponents.js';
 import { timeFilter } from './vuefilters.js';
 
 Vue.filter('toLocaleTime', timeFilter)
@@ -22,9 +22,8 @@ const router = new VueRouter({
     //mode: 'history', //Reload doesn't work with 'history mode'
     base: __dirname,
     routes: [
-        { path: '/', component: Home },
+        { path: '/', component: Table },
         { path: '/dice', component: Dice },
-        { path: '/stamps', component: Table },
         { path: '/foo', component: Foo, props: { someArray2: someArray2 } },
         { path: '/bar', component: Bar },
         { path: '/404', component: Page404 },
@@ -49,7 +48,6 @@ const VueApp = new Vue({
             <header-box :title='title'></header-box>
             <ul id="menu">
                 <li><router-link to="/">Home</router-link></li>
-                <li><router-link to="/stamps">Stamps</router-link></li>
                 <li><router-link to="/dice">Dice</router-link></li>
                 <li><router-link to="/easymoney">Easy money</router-link></li>
                 <li><router-link to="/foo">/foo</router-link></li>
@@ -61,13 +59,7 @@ const VueApp = new Vue({
             <router-view class="view" :some-array="someArray"></router-view>
         </div>
     `,
-    methods: {
-        testFunction: function() {
-            console.log('this.someArray', this.someArray)
-        }
-    },
     created: function() {
-        this.testFunction();
         helloHelper('from "VueApp" in vueapp.js');
     }
 })
