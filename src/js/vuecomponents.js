@@ -132,9 +132,21 @@ const Dice = {
     methods: {
         diceRoll: function() {
             this.outcome = Math.floor(Math.random() * 6 + 1);
+            router.push({
+                query: {
+                    vuedice: this.outcome,
+                    vanilladice: this.outcome2,
+                }
+            });
         },
         diceRollImported: function() {
             this.outcome2 = diceRollHelper();
+            router.push({
+                query: {
+                    vuedice: this.outcome,
+                    vanilladice: this.outcome2,
+                }
+            });
         }
     },
     created: function() {
