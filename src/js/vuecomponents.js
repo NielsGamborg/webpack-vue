@@ -41,7 +41,12 @@ const Home = {
 
 const Foo = {
     props: ['someArray', 'someArray2'],
-    template: `<div><h3>Foo</h3><p>foo</p><p>someArray: {{ someArray }}</p><p>someArray2: {{ someArray2 }}</p></div>`
+    template: `
+    <div>
+        <h3>Foo</h3>
+        <p>someArray passed as dynamic prop through 'router-view'-tag in the maintemplate:<br> {{ someArray }}</p>
+        <p>someArray2 passed as static prop through routes configuration in VueRouter: <br>{{ someArray2 }}</p>
+    </div>`
 }
 
 const Bar = { template: '<div><h3>Bar</h3><p>bar</p></div>' }
