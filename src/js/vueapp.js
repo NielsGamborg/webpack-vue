@@ -13,6 +13,8 @@ import {timeFilter} from './vuefilters.js';
 Vue.filter('toLocaleTime', timeFilter)
 Vue.component('header-box', Title);
 
+const someArray2 = [13, 17, 19, 23];
+
 const router = new VueRouter({
     //mode: 'history', //Reload doesn't work with 'history mode'
     base: __dirname,
@@ -20,7 +22,7 @@ const router = new VueRouter({
       { path: '/', component: Home },
       { path: '/dice', component: Dice },
       { path: '/stamps', component: Table },
-      { path: '/foo', component: Foo },
+      { path: '/foo', component: Foo,  props: { someArray2: someArray2 } },
       { path: '/bar', component: Bar },
       { path: '/404', component: Page404 },
       { path: '*', redirect: '/404' }
@@ -37,6 +39,7 @@ const VueApp = new Vue( {
         stamps: {},
         user: 'nig',
         someArray: [2, 3, 5, 7, 11, 13, 13, 13, 17, 19],
+        someArray2: [13, 17, 19, 23],
         title: 'Testing vue, webpack and ecma script 6 imports',
     },
     template: `
@@ -66,4 +69,4 @@ const VueApp = new Vue( {
     }
 })
 
-export { VueApp };
+export { VueApp, router };

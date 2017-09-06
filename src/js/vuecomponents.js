@@ -1,8 +1,13 @@
 /* External packages */
 import _ from 'lodash'
 
+/* Internal Vue stuff */
+import {router} from './vueapp.js';
+
 /* Bogus data when offline */
 import fileData from './data.json';
+
+
 
 
 const Title = {
@@ -36,7 +41,7 @@ const Home = {
     `
 }
 
-const Foo = { template: '<div><h3>Foo</h3><p>foo</p></div>' }
+const Foo = { props:['someArray','someArray2'], template: '<div><h3>Foo</h3><p>foo</p><p>someArray: {{ someArray }}</p><p>someArray2: {{ someArray2 }}</p></div>' }
 
 const Bar = { template: '<div><h3>Bar</h3><p>bar</p></div>' }
 
@@ -102,11 +107,11 @@ const Table = {
                 this.stamps = response.body;
                 this.error = false;
                 console.log('response.body', response.body);
-                /*router.push({
+                router.push({ //pushing user to URL if success
                     query: {
-                        query: 'this.myQuery',
+                        user: this.user,
                     }
-                });*/
+                });
             }, response => {
                 console.log('Error!', response);
                 this.stamps = {};
