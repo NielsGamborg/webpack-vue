@@ -5,7 +5,7 @@ import _ from 'lodash'
 import fileData from './data.json';
 
 
-const title = {
+const Title = {
     props: ['title'],
     template: `
         <h1>{{ this.title }}</h1>
@@ -13,7 +13,23 @@ const title = {
 }
 
 
-const table = {
+const Home = { 
+    props:['someArray'],
+    template: `
+    <div>
+        <h3>Home</h3>
+        <p>Somearray:</p>
+        <p>{{ this.someArray }}</p>
+        <ul>
+            <li v-for="item in someArray">{{ item }}</li>
+        </ul>
+    </div>    
+    `
+}
+const Foo = { template: '<div>foo</div>' }
+const Bar = { template: '<div>bar</div>' }
+
+const Table = {
     props: [],
     data: function () {
         return {
@@ -88,7 +104,7 @@ const table = {
 }
 
 
-const dice = {
+const Dice = {
     props: [],
     data: function () {
         return {
@@ -109,4 +125,4 @@ const dice = {
 }
 
 
-export { title, dice, table };
+export { Title, Dice, Table, Foo, Bar, Home };
