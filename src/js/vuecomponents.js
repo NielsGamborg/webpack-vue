@@ -4,6 +4,9 @@ import _ from 'lodash'
 /* Internal Vue stuff */
 import { router } from './vueapp.js';
 
+/* Internal vanilla JS function */
+import { helloHelper, diceRollHelper } from './helperFunctions.js'
+
 /* Bogus data when offline */
 import fileData from './data.json';
 
@@ -36,7 +39,10 @@ const Home = {
             <li v-for="item in someArray">{{ item }}</li>
         </ul>
     </div>    
-    `
+    `,
+    created: function() {
+        helloHelper("from 'Home' component in vuecomponents.js");
+    }
 }
 
 const Foo = {
@@ -49,7 +55,24 @@ const Foo = {
     </div>`
 }
 
-const Bar = { template: '<div><h3>Bar</h3><p>bar</p></div>' }
+const Bar = {
+    template: `
+        <div>
+            <h3>Bar</h3>
+            <p>bar</p>
+            <ul id="inlinemenu">
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/stamps">Stamps</router-link></li>
+                <li><router-link to="/dice">Dice</router-link></li>
+                <li><router-link to="/easymoney">Easy money</router-link></li>
+                <li><router-link to="/foo">/foo</router-link></li>
+                <li><router-link to="/bar">/bar</router-link></li>
+                <router-link tag="li" to="/bar" :event="['mousedown', 'touchstart']">
+                    <a>/bar</a>
+                </router-link>
+            </ul>
+        </div>`
+}
 
 const Table = {
     props: [],
@@ -136,8 +159,6 @@ const Table = {
                 console.log("user doesn't exist")
             }
         }
-
-
     }
 }
 
@@ -147,19 +168,29 @@ const Dice = {
     data: function() {
         return {
             outcome: '',
+            outcome2: '',
         }
     },
     template: `
         <div>
             <h3>Dice</h3>
-            <button v-on:click="diceRoll()">Roll dice!</button>
+            <button v-on:click="diceRoll()">Roll Vue dice</button>
             <p>{{ this.outcome }}</p>
+            <button v-on:click="diceRollImported()">Roll Vanilla dice</button>
+            <p>{{ this.outcome2 }}</p>
         </div>    
     `,
     methods: {
         diceRoll: function() {
             this.outcome = Math.floor(Math.random() * 6 + 1);
+        },
+        diceRollImported: function() {
+            this.outcome2 = diceRollHelper();
         }
+    },
+    created: function() {
+        this.diceRoll();
+        this.diceRollImported();
     }
 }
 

@@ -7,11 +7,14 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 
 /* Internal Vue stuff */
-import {Title, Table, Dice, Foo, Bar, Home, Page404} from './vuecomponents.js';
-import {timeFilter} from './vuefilters.js';
+import { Title, Table, Dice, Foo, Bar, Home, Page404 } from './vuecomponents.js';
+import { timeFilter } from './vuefilters.js';
 
 Vue.filter('toLocaleTime', timeFilter)
 Vue.component('header-box', Title);
+
+/* Internal vanilla JS function */
+import { helloHelper } from './helperFunctions.js'
 
 const someArray2 = [13, 17, 19, 23];
 
@@ -19,27 +22,26 @@ const router = new VueRouter({
     //mode: 'history', //Reload doesn't work with 'history mode'
     base: __dirname,
     routes: [
-      { path: '/', component: Home },
-      { path: '/dice', component: Dice },
-      { path: '/stamps', component: Table },
-      { path: '/foo', component: Foo,  props: { someArray2: someArray2 } },
-      { path: '/bar', component: Bar },
-      { path: '/404', component: Page404 },
-      { path: '*', redirect: '/404' }
-  ]
+        { path: '/', component: Home },
+        { path: '/dice', component: Dice },
+        { path: '/stamps', component: Table },
+        { path: '/foo', component: Foo, props: { someArray2: someArray2 } },
+        { path: '/bar', component: Bar },
+        { path: '/404', component: Page404 },
+        { path: '*', redirect: '/404' }
+    ]
 
 });
 
 
 
-const VueApp = new Vue( {
+const VueApp = new Vue({
     router,
     el: '#app',
     data: {
         stamps: {},
         user: 'nig',
         someArray: [2, 3, 5, 7, 11, 13, 13, 13, 17, 19],
-        someArray2: [13, 17, 19, 23],
         title: 'Testing vue, webpack and ecma script 6 imports',
     },
     template: `
@@ -60,12 +62,13 @@ const VueApp = new Vue( {
         </div>
     `,
     methods: {
-        testFunction: function () {
+        testFunction: function() {
             console.log('this.someArray', this.someArray)
         }
     },
-    created: function () {
+    created: function() {
         this.testFunction();
+        helloHelper('from "VueApp" in vueapp.js');
     }
 })
 
