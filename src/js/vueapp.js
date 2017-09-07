@@ -7,7 +7,7 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 
 /* Internal Vue stuff */
-import { Title, Stamps, Dice, Foo, Bar, Page404, Routeinfo } from './vuecomponents.js';
+import { Title, Stamps, Dice, Foo, Bar, Page404, Routeinfo, BarHome, BarBar, BarFoo } from './vuecomponents.js';
 import { timeFilter } from './vuefilters.js';
 
 Vue.filter('toLocaleTime', timeFilter)
@@ -28,7 +28,25 @@ const router = new VueRouter({
         { path: '/', redirect: '/home' },
         { path: '/dice', component: Dice },
         { path: '/foo', components: { default: Foo, footer: Bar }, props: { someArray2: someArray2 } },
-        { path: '/bar', components: { default: Bar, footer: Foo } },
+        {
+            path: '/bar',
+            components: { default: Bar, footer: Foo },
+            redirect: '/bar/home',
+            children: [
+                {
+                    path: 'home',
+                    component: BarHome
+                },
+                {
+                    path: 'foo',
+                    component: BarFoo
+                },
+                {
+                    path: 'bar',
+                    component: BarBar
+                }
+            ]
+        },
         { path: '/404', component: Page404 },
         { path: '*', redirect: '/404' }
     ]
@@ -51,10 +69,10 @@ const VueApp = new Vue({
             <ul id="menu">
                 <li><router-link to="/home" excact>Home</router-link></li>
                 <li><router-link to="/dice">Dice</router-link></li>
-                <li><router-link to="/foo">/foo</router-link></li>
+                <li><router-link to="/bar">/bar</router-link></li>
                 <li>
-                    <router-link tag="a" to="/bar" :event="['mousedown', 'touchstart']">
-                        <span>/bar</span>
+                    <router-link tag="a" to="/foo" :event="['mousedown', 'touchstart']">
+                        <span>/foo</span>
                     </router-link>
                 </li>
                 <li><router-link to="/easymoney">Easy money</router-link></li>
@@ -64,7 +82,7 @@ const VueApp = new Vue({
             <router-view class="view 2" id="footer" name="footer"></router-view>
         </div>
     `,
-    created: function() {
+    created: function () {
         helloHelper('from "VueApp" in vueapp.js');
     }
 })

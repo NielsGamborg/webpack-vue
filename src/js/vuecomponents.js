@@ -57,14 +57,9 @@ const Routeinfo = {
         '$route'(to, from) {
             this.routeFrom = from;
             this.routeTo = to;
-            console.log('Route change')
-            console.log('Route change', to)
-            console.log('Route change', from)
         }
     },
     created: function() {
-        console.log('route', this.$router);
-        console.log('route', this.$router.app._route);
         this.routeTo = this.$router.app._route;
       },
 }
@@ -235,20 +230,21 @@ const Bar = {
     template: `
         <div>
             <h3>Bar</h3>
-            <p>bar</p>
+            <p>Bar subpages menu</p>
             <ul id="inlinemenu">
-                <li><router-link to="/">Home</router-link></li>
-                <li><router-link to="/stamps">Stamps</router-link></li>
-                <li><router-link to="/dice">Dice</router-link></li>
-                <li><router-link to="/easymoney">Easy money</router-link></li>
-                <li><router-link to="/foo">/foo</router-link></li>
-                <li><router-link to="/bar">/bar</router-link></li>
-                <router-link tag="li" to="/bar" :event="['mousedown', 'touchstart']">
-                    <a>/bar</a>
-                </router-link>
+                <li><router-link to="/bar/home" excact>/bar/home</router-link></li>
+                <li><router-link to="/bar/foo">/bar/foo</router-link></li>
+                <li><router-link to="/bar/bar">/bar/bar</router-link></li>
             </ul>
+            <router-view></router-view>
         </div>`
 }
+
+const BarHome = {template: `<div><h4>Bar home subpage</h4><p>Home page of the bars</p></div>`}
+
+const BarFoo = {template: `<div><h4>BarFoo subpage</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut iaculis risus. Duis ac pharetra magna, in pretium odio. Donec dignissim dolor eu arcu egestas, non interdum odio pharetra. Morbi nunc diam, congue elementum neque at, pulvinar pellentesque ante. Pellentesque tincidunt lorem a eros efficitur, posuere scelerisque augue suscipit.</p></div>`}
+
+const BarBar = {template: `<div><h4>BarBar subpage</h4><p> Suspendisse vitae lacinia turpis. Vivamus nec tortor aliquet, dignissim mi ut, imperdiet arcu.  Aliquam eu maximus ligula. Vestibulum nec lectus faucibus, interdum turpis in, mollis metus. Suspendisse potenti. Suspendisse cursus nec erat in lobortis. Sed scelerisque non orci non euismod. Morbi blandit lacus ac facilisis condimentum. Ut vel pretium augue, vitae cursus nisi. Nullam sagittis, lorem id scelerisque porta, ligula tellus pretium metus, nec laoreet sapien sem vitae felis. Morbi ante magna, hendrerit ut ante in, sollicitudin accumsan est.</p></div>`}
 
 
 const Page404 = {
@@ -260,4 +256,4 @@ const Page404 = {
     `
 }
 
-export { Title, Dice, Stamps, Foo, Bar, Page404, Routeinfo };
+export { Title, Dice, Stamps, Foo, Bar, Page404, Routeinfo, BarHome ,BarBar, BarFoo };
