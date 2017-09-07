@@ -232,7 +232,7 @@ const Bar = {
             <h3>Bar</h3>
             <p>Bar subpages menu</p>
             <ul id="inlinemenu">
-                <li><router-link to="/bar/home" excact>/bar/home</router-link></li>
+                <li><router-link to="/bar/home">/bar/home</router-link></li>
                 <li><router-link to="/bar/foo">/bar/foo</router-link></li>
                 <li><router-link to="/bar/bar">/bar/bar</router-link></li>
             </ul>
