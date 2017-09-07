@@ -24,7 +24,7 @@ const router = new VueRouter({
     base: __dirname,
     linkActiveClass: 'hey-i-am-active',
     routes: [
-        { path: '/home', component: Stamps },
+        { path: '/home', component: Stamps, alias: '/stamps' },
         { path: '/', redirect: '/home' },
         { path: '/dice', component: Dice },
         { path: '/foo', components: { default: Foo, footer: Bar }, props: { someArray2: someArray2 } },
