@@ -20,6 +20,7 @@ h3 {
 .error {
     background-color: #ffffcc;
     border: 1px solid #ccc;
+    float: left;
     padding: 1em;
 }
 
@@ -55,17 +56,15 @@ ul#menu {
 }
 
 ul#inlinemenu {
-    list-style-type: none;
     padding-left: 0;
+    list-style-position: inside;
 }
 
 #inlinemenu li a {
-    border: 1px solid #999;
     color: #223;
     display: inline-block;
     margin-bottom: .2em;
     padding: .2em .5em;
-    text-decoration: none;
 }
 
 #inlinemenu li a.hey-i-am-active {

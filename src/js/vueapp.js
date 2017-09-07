@@ -14,10 +14,8 @@ Vue.filter('toLocaleTime', timeFilter)
 Vue.component('header-box', Title);
 Vue.component('routeinfo-box', Routeinfo);
 
-/* Internal vanilla JS function */
+/* Vanilla JS function */
 import { helloHelper } from './helperFunctions.js'
-
-const someArray2 = [13, 17, 19, 23];
 
 const router = new VueRouter({
     //mode: 'history', //Reload doesn't work with 'history mode'
@@ -27,13 +25,12 @@ const router = new VueRouter({
         { path: '/home', component: Stamps, alias: '/stamps' },
         { path: '/', redirect: '/home' },
         { path: '/dice', component: Dice },
-        { path: '/foo', components: { default: Foo, footer: Bar }, props: { someArray2: someArray2 } },
+        { path: '/foo', components: { default: Foo, footer: Bar }, props: { default: { someArray2: [13, 17, 19, 23, 27] } } },
         {
             path: '/bar',
             components: { default: Bar, footer: Foo },
             redirect: '/bar/home',
-            children: [
-                {
+            children: [{
                     path: 'home',
                     component: BarHome
                 },
@@ -82,7 +79,7 @@ const VueApp = new Vue({
             <router-view class="view 2" id="footer" name="footer"></router-view>
         </div>
     `,
-    created: function () {
+    created: function() {
         helloHelper('from "VueApp" in vueapp.js');
     }
 })

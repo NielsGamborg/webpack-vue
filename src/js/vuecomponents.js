@@ -24,7 +24,7 @@ const Routeinfo = {
     props: [],
     template: `
         <div id="routeinfo">
-            <h3>Router info</h3>
+            <h3>Route info</h3>
             <h4>Route to</h4>
             <ul>
                 <li>Route path: {{ this.routeTo.path}}</li>
@@ -47,27 +47,27 @@ const Routeinfo = {
             </ul>
         </div>
     `,
-    data: function () {
+    data: function() {
         return {
             routeTo: {},
             routeFrom: {},
         }
     },
     watch: {
-        '$route'(to, from) {
+        '$route' (to, from) {
             this.routeFrom = from;
             this.routeTo = to;
         }
     },
     created: function() {
         this.routeTo = this.$router.app._route;
-      },
+    },
 }
 
 
 const Stamps = {
     props: [],
-    data: function () {
+    data: function() {
         return {
             stamps: {},
             user: '',
@@ -81,10 +81,10 @@ const Stamps = {
     },
     template: `
         <div id="table-box">
-            <h3>Stemplinger for {{ user }}</h3>
+            <h3>Ind og udstemplinger på SB</h3>
             <div id="userInput">
                 Initialer: <input type="text "v-model="user" v-on:keyup.enter="getData()">
-                Show rows: <select v-model="stampNumbers">
+                Vis seneste: <select v-model="stampNumbers">
                     <option value="20">20</option> 
                     <option value="100">100</option> 
                     <option value="1000">All</option> 
@@ -115,14 +115,14 @@ const Stamps = {
         </div>   
     `,
     watch: {
-        user: _.debounce(function () {
+        user: _.debounce(function() {
             if (this.user.length > 1) {
                 this.getData();
             }
         }, 300)
     },
     methods: {
-        getData: function () {
+        getData: function() {
             if (this.allUsers.includes(this.user)) {
                 console.log('user exists');
                 this.url = '/spot-service/spot/services/medarbejder/access/' + this.user;
@@ -152,7 +152,7 @@ const Stamps = {
             }
         }
     },
-    created: function () {
+    created: function() {
         helloHelper("from 'Stamps' component in vuecomponents.js");
     }
 }
@@ -160,7 +160,7 @@ const Stamps = {
 
 const Dice = {
     props: [],
-    data: function () {
+    data: function() {
         return {
             outcome: '',
             outcome2: '',
@@ -176,7 +176,7 @@ const Dice = {
         </div>    
     `,
     methods: {
-        diceRoll: function () {
+        diceRoll: function() {
             this.outcome = Math.floor(Math.random() * 6 + 1);
             router.push({
                 query: {
@@ -185,7 +185,7 @@ const Dice = {
                 }
             });
         },
-        diceRollImported: function () {
+        diceRollImported: function() {
             this.outcome2 = diceRollHelper();
             router.push({
                 query: {
@@ -195,7 +195,7 @@ const Dice = {
             });
         }
     },
-    created: function () {
+    created: function() {
         this.diceRoll();
         this.diceRollImported();
     }
@@ -204,7 +204,7 @@ const Dice = {
 
 const Foo = {
     props: ['someArray', 'someArray2'],
-    data: function () {
+    data: function() {
         return {
             fileData: fileData
         }
@@ -212,13 +212,15 @@ const Foo = {
     template: `
     <div>
         <h3>Foo</h3>
-        <p>someArray passed as dynamic prop through 'router-view'-tag in the maintemplate:<br> {{ someArray }}</p>
-        <p>someArray2 passed as static prop through routes configuration in VueRouter: <br>{{ someArray2 }}</p>
-        <p>someArray passed as prop through 'router-view'-tag in the maintemplate:</p>
+        
+        <p><b>someArray</b> passed as prop through 'router-view'-tag in the maintemplate:</p>
         <ul>
             <li v-for="item in someArray">{{ item }}</li>
         </ul>
-        <p>Static data imported into vue from data.json</p>
+
+        <p><b>someArray2</b> passed as static prop through routes configuration in VueRouter: <br><br>{{ someArray2 }}</p>
+        
+        <p><b>Static data</b> imported into vue from data.json</p>
         <ul>
             <li v-for="(item, index) in fileData" v-if="index < 5 ">{{ item }}</li>
         </ul>
@@ -240,11 +242,11 @@ const Bar = {
         </div>`
 }
 
-const BarHome = {template: `<div><h4>Bar home subpage</h4><p>Home page of the bars</p></div>`}
+const BarHome = { template: `<div><h4>Bar home subpage</h4><p>Home page of the bars</p></div>` }
 
-const BarFoo = {template: `<div><h4>BarFoo subpage</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut iaculis risus. Duis ac pharetra magna, in pretium odio. Donec dignissim dolor eu arcu egestas, non interdum odio pharetra. Morbi nunc diam, congue elementum neque at, pulvinar pellentesque ante. Pellentesque tincidunt lorem a eros efficitur, posuere scelerisque augue suscipit.</p></div>`}
+const BarFoo = { template: `<div><h4>BarFoo subpage</h4><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut iaculis risus. Duis ac pharetra magna, in pretium odio. Donec dignissim dolor eu arcu egestas, non interdum odio pharetra. Morbi nunc diam, congue elementum neque at, pulvinar pellentesque ante. Pellentesque tincidunt lorem a eros efficitur, posuere scelerisque augue suscipit.</p></div>` }
 
-const BarBar = {template: `<div><h4>BarBar subpage</h4><p> Suspendisse vitae lacinia turpis. Vivamus nec tortor aliquet, dignissim mi ut, imperdiet arcu.  Aliquam eu maximus ligula. Vestibulum nec lectus faucibus, interdum turpis in, mollis metus. Suspendisse potenti. Suspendisse cursus nec erat in lobortis. Sed scelerisque non orci non euismod. Morbi blandit lacus ac facilisis condimentum. Ut vel pretium augue, vitae cursus nisi. Nullam sagittis, lorem id scelerisque porta, ligula tellus pretium metus, nec laoreet sapien sem vitae felis. Morbi ante magna, hendrerit ut ante in, sollicitudin accumsan est.</p></div>`}
+const BarBar = { template: `<div><h4>BarBar subpage</h4><p> Suspendisse vitae lacinia turpis. Vivamus nec tortor aliquet, dignissim mi ut, imperdiet arcu.  Aliquam eu maximus ligula. Vestibulum nec lectus faucibus, interdum turpis in, mollis metus. Suspendisse potenti. Suspendisse cursus nec erat in lobortis. Sed scelerisque non orci non euismod. Morbi blandit lacus ac facilisis condimentum. Ut vel pretium augue, vitae cursus nisi. Nullam sagittis, lorem id scelerisque porta, ligula tellus pretium metus, nec laoreet sapien sem vitae felis. Morbi ante magna, hendrerit ut ante in, sollicitudin accumsan est.</p></div>` }
 
 
 const Page404 = {
@@ -256,4 +258,4 @@ const Page404 = {
     `
 }
 
-export { Title, Dice, Stamps, Foo, Bar, Page404, Routeinfo, BarHome ,BarBar, BarFoo };
+export { Title, Dice, Stamps, Foo, Bar, Page404, Routeinfo, BarHome, BarBar, BarFoo };
