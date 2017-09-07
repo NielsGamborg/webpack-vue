@@ -13,3 +13,63 @@ body {
     padding: .5em 2em 4em;
     max-width: 1000px;
 }
+
+h1 {
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+
+/* Menus */
+
+ul#menu {
+    list-style-type: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 1em 0 2em;
+    width: 100%;
+}
+
+#menu li {
+    border: 1px solid #999;
+    float: left;
+    margin: 0 .5em 0 0;
+}
+
+#menu li a {
+    color: #223;
+    display: block;
+    padding: .3em 1em;
+    text-decoration: none;
+}
+
+#menu li a:hover {
+    background-color: #f0f0f3;
+    color: black;
+}
+
+#menu li a.hey-i-am-active {
+    background-color: #333;
+    color: white;
+}
+
+ul#inlinemenu {
+    padding-left: 0;
+    list-style-position: inside;
+}
+
+#inlinemenu li a {
+    color: #223;
+    display: inline-block;
+    margin-bottom: .2em;
+    padding: .2em .5em;
+}
+
+#inlinemenu li a.hey-i-am-active {
+    background-color: #678;
+    color: white;
+}

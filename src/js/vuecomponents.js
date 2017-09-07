@@ -87,7 +87,7 @@ const Stamps = {
                 Vis seneste: <select v-model="stampNumbers">
                     <option value="20">20</option> 
                     <option value="100">100</option> 
-                    <option value="1000">All</option> 
+                    <option value="1000">Alle</option> 
                 </select>
                 <br>
                 <br>
@@ -168,7 +168,7 @@ const Dice = {
     },
     template: `
         <div>
-            <h3>Dice</h3>
+            <h3>Dices</h3>
             <button v-on:click="diceRoll()">Roll Vue dice</button>
             <p>{{ this.outcome }}</p>
             <button v-on:click="diceRollImported()">Roll Vanilla dice</button>
