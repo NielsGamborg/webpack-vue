@@ -1,3 +1,6 @@
+/* Requiring index.html via file-loader plugin */
+require('file-loader?name=[name].[ext]!../index.html');
+
 /* Internal Vue stuff */
 import { VueApp } from './vueapp.js';
 
