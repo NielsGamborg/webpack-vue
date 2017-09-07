@@ -2,6 +2,11 @@ h1 {
     font-size: 18px;
 }
 
+h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
 .left {
     float: left;
     margin: 2em 5% 2em 0;
@@ -44,7 +49,7 @@ ul#menu {
     color: black;
 }
 
-#menu li a.router-link-exact-active {
+#menu li a.hey-i-am-active {
     background-color: #333;
     color: white;
 }
@@ -57,14 +62,33 @@ ul#menu {
     padding-top: 1em;
 }
 
-
-/* CSS for single component table */
-
-h3 {
-    font-size: 18px;
-    text-transform: uppercase;
+/* CSS for single component route info */
+#routeinfo{
+    background: white;
+    border: 1px solid #cccccc;
+    color: #999;
+    float: right;
+    font-size: 90%;
+    padding: 0em 1em 1em;
+    width: 300px;
 }
 
+#routeinfo h4{
+    margin-bottom: .5em;
+}
+
+#routeinfo ul{
+    margin-top: 0;
+    padding-left: 1.2em;
+}
+
+#routeinfo > ul > li{
+    line-height: 1.6em;
+    margin-bottom: 1em;
+}
+
+
+/* CSS for single component table */
 #userInput {
     padding: 1em 0;
 }

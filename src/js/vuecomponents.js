@@ -20,9 +20,59 @@ const Title = {
 }
 
 
-const Table = {
+const Routeinfo = {
     props: [],
-    data: function() {
+    template: `
+        <div id="routeinfo">
+            <h3>Router info</h3>
+            <h4>Route to</h4>
+            <ul>
+                <li>Route path: {{ this.routeTo.path}}</li>
+                <li v-if="routeTo.path !== routeTo.fullPath">Route full path: {{ this.routeTo.fullPath}}</li>
+                <li v-if="!_.isEmpty(routeTo.query)" >Route query params: 
+                    <ul>
+                        <li v-for="(value, key)  in routeTo.query">{{ key }}: {{value }}</li>
+                    </ul>
+                </li>
+            </ul>
+            <h4>Route from</h4>
+            <ul>
+                <li>Route path: {{ this.routeFrom.path}}</li>
+                <li v-if="routeFrom.path !== routeFrom.fullPath">Route full path: {{ this.routeFrom.fullPath}}</li>
+                <li v-if="!_.isEmpty(routeFrom.query)" >Route query params: 
+                    <ul>
+                        <li v-for="(value, key)  in routeFrom.query">{{ key }}: {{value }}</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    `,
+    data: function () {
+        return {
+            routeTo: {},
+            routeFrom: {},
+        }
+    },
+    watch: {
+        '$route'(to, from) {
+            this.routeFrom = from;
+            this.routeTo = to;
+            console.log('Route change')
+            console.log('Route change', to)
+            console.log('Route change', from)
+        }
+    },
+    created: function() {
+        console.log('route', this.$router);
+        console.log('route', this.$router.app._route);
+        this.routeTo = this.$router.app._route;
+      },
+}
+
+
+const Stamps = {
+    props: [],
+    data: function () {
         return {
             stamps: {},
             user: '',
@@ -30,7 +80,7 @@ const Table = {
             stampType: '',
             url: '',
             error: false,
-            allUsers: ['nig', 'teg', 'ng', 'ni'],
+            allUsers: ['nig', 'teg'],
             fileData: fileData
         }
     },
@@ -58,8 +108,8 @@ const Table = {
             <template v-if="!error && this.user !== ''">    
                 <table>
                     <tbody>
-                        <!-- <tr v-for="(item, index) in stamps" v-if="item.wintidStempKodeTekst.toLowerCase().includes(stampType) && index < stampNumbers"> <!-- Use if online -->
-                        <tr v-for="(item, index) in fileData" v-if="item.wintidStempKodeTekst.toLowerCase().includes(stampType)"> <!-- Use if offline -->
+                        <tr v-for="(item, index) in stamps" v-if="item.wintidStempKodeTekst.toLowerCase().includes(stampType) && index < stampNumbers"> <!-- Use if online -->
+                        <!-- <tr v-for="(item, index) in fileData" v-if="item.wintidStempKodeTekst.toLowerCase().includes(stampType)"> <!-- Use if offline -->
                             <td>{{ item.time | toLocaleTime }}</td>
                             <td>{{ item.terminalName }}</td>
                             <td>{{ item.wintidStempKodeTekst }}</td>
@@ -70,14 +120,14 @@ const Table = {
         </div>   
     `,
     watch: {
-        user: _.debounce(function() {
+        user: _.debounce(function () {
             if (this.user.length > 1) {
                 this.getData();
             }
         }, 300)
     },
     methods: {
-        getData: function() {
+        getData: function () {
             if (this.allUsers.includes(this.user)) {
                 console.log('user exists');
                 this.url = '/spot-service/spot/services/medarbejder/access/' + this.user;
@@ -94,27 +144,28 @@ const Table = {
                     console.log('Error!', response);
                     this.stamps = {};
                     this.error = true; // Use if online
-                    this.error = false; // Use if offline
+                    /*  Use if offline
+                    this.error = false; 
                     router.push({ //pushing hardcoded user to URL if offline
                         query: {
                             user: this.user,
                         }
-                    });
+                    });*/
                 });
             } else {
                 console.log("user doesn't exist")
             }
         }
     },
-    created: function() {
-        helloHelper("from 'Table' component in vuecomponents.js");
+    created: function () {
+        helloHelper("from 'Stamps' component in vuecomponents.js");
     }
 }
 
 
 const Dice = {
     props: [],
-    data: function() {
+    data: function () {
         return {
             outcome: '',
             outcome2: '',
@@ -130,7 +181,7 @@ const Dice = {
         </div>    
     `,
     methods: {
-        diceRoll: function() {
+        diceRoll: function () {
             this.outcome = Math.floor(Math.random() * 6 + 1);
             router.push({
                 query: {
@@ -139,7 +190,7 @@ const Dice = {
                 }
             });
         },
-        diceRollImported: function() {
+        diceRollImported: function () {
             this.outcome2 = diceRollHelper();
             router.push({
                 query: {
@@ -149,7 +200,7 @@ const Dice = {
             });
         }
     },
-    created: function() {
+    created: function () {
         this.diceRoll();
         this.diceRollImported();
     }
@@ -158,7 +209,7 @@ const Dice = {
 
 const Foo = {
     props: ['someArray', 'someArray2'],
-    data: function() {
+    data: function () {
         return {
             fileData: fileData
         }
@@ -209,4 +260,4 @@ const Page404 = {
     `
 }
 
-export { Title, Dice, Table, Foo, Bar, Page404 };
+export { Title, Dice, Stamps, Foo, Bar, Page404, Routeinfo };
