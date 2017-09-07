@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    //entry: './src/index.js',
+    //entry: './app/index.js',
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
@@ -14,8 +14,8 @@ module.exports = {
         }
     },
     entry: {
-        app: './src/js/index.js',
-        helperFunctions: './src/js/helperFunctions.js'
+        app: './app/js/index.js',
+        helperFunctions: './app/js/helperFunctions.js'
     },
     output: {
         //filename: 'bundle.js',
