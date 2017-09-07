@@ -54,15 +54,22 @@ ul#menu {
     color: white;
 }
 
-#inlinemenu li a{
+ul#inlinemenu {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#inlinemenu li a {
+    border: 1px solid #999;
     color: #223;
     display: inline-block;
+    margin-bottom: .2em;
     padding: .2em .5em;
     text-decoration: none;
 }
 
 #inlinemenu li a.hey-i-am-active {
-    background-color: #333;
+    background-color: #678;
     color: white;
 }
 
@@ -74,8 +81,10 @@ ul#menu {
     padding-top: 1em;
 }
 
+
 /* CSS for single component route info */
-#routeinfo{
+
+#routeinfo {
     background: white;
     border: 1px solid #cccccc;
     color: #999;
@@ -87,22 +96,23 @@ ul#menu {
     z-index: 100;
 }
 
-#routeinfo h4{
+#routeinfo h4 {
     margin-bottom: .5em;
 }
 
-#routeinfo ul{
+#routeinfo ul {
     margin-top: 0;
     padding-left: 1.2em;
 }
 
-#routeinfo > ul > li{
+#routeinfo>ul>li {
     line-height: 1.6em;
     margin-bottom: 1em;
 }
 
 
 /* CSS for single component table */
+
 #userInput {
     padding: 1em 0;
 }
