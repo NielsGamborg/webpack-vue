@@ -70,7 +70,9 @@ ul#menu {
     float: right;
     font-size: 90%;
     padding: 0em 1em 1em;
+    position: relative;
     width: 300px;
+    z-index: 100;
 }
 
 #routeinfo h4{
