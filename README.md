@@ -1,6 +1,6 @@
 # webpack-vue
 
-Playing with webpack, vue, components, vue-router and imports
+Playing with webpack, vue, vue-router and vuex
 
 ## Build Setup
 

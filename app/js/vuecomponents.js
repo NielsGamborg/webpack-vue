@@ -2,7 +2,7 @@
 import _ from 'lodash'
 
 /* Internal Vue stuff */
-import { router } from './vueapp.js';
+//import { router } from './vueapp.js';
 //import { store } from './vueapp.js';
 
 /* Internal vanilla JS function */
@@ -138,7 +138,7 @@ const Stamps = {
                     this.stamps = response.body;
                     this.error = false;
                     console.log('response.body', response.body);
-                    router.push({ //pushing user to URL if success
+                    this.$router.push({ //pushing user to URL if success
                         query: {
                             user: this.user,
                         }
@@ -149,7 +149,7 @@ const Stamps = {
                     this.error = true; // Use if online
                     /*  Use if offline
                     this.error = false; 
-                    router.push({ //pushing hardcoded user to URL if offline
+                    this.$router.push({ //pushing hardcoded user to URL if offline
                         query: {
                             user: this.user,
                         }
@@ -229,7 +229,7 @@ const Dice = {
             this.$store.state.outcome = Math.floor(Math.random() * 6 + 1);
             this.$store.state.rolls++;
             this.$store.state.sum = this.$store.state.sum + this.$store.state.outcome;
-            /*router.push({
+            /*this.$router.push({
                 query: {
                     vuedice: this.outcome,
                     vanilladice: this.outcome2,
@@ -241,7 +241,7 @@ const Dice = {
             this.$store.state.outcome2 = diceRollHelper();
             this.$store.state.rolls2++;
             this.$store.state.sum2 = this.$store.state.sum2 + this.$store.state.outcome2;
-            /*router.push({
+            /*this.$router.push({
                 query: {
                     vuedice: this.outcome,
                     vanilladice: this.outcome2,
