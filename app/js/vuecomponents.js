@@ -3,7 +3,7 @@ import _ from 'lodash'
 
 /* Internal Vue stuff */
 import { router } from './vueapp.js';
-import { store } from './vueapp.js';
+//import { store } from './vueapp.js';
 
 /* Internal vanilla JS function */
 import { helloHelper, diceRollHelper } from './helperFunctions.js'
@@ -25,7 +25,7 @@ const Routeinfo = {
     props: [],
     computed: {
         pagecount() {
-            return store.state.pagecount;
+            return this.$store.state.pagecount;
         }
     },
     template: `
@@ -64,7 +64,7 @@ const Routeinfo = {
         '$route' (to, from) {
             this.routeFrom = from;
             this.routeTo = to;
-            store.state.pagecount++;
+            this.$store.state.pagecount++;
         }
     },
     created: function() {
@@ -170,25 +170,25 @@ const Dice = {
     props: [],
     computed: {
         count() {
-            return store.state.count
+            return this.$store.state.count
         },
         outcome() {
-            return store.state.outcome
+            return this.$store.state.outcome
         },
         outcome2() {
-            return store.state.outcome2
+            return this.$store.state.outcome2
         },
         rolls() {
-            return store.state.rolls
+            return this.$store.state.rolls
         },
         rolls2() {
-            return store.state.rolls2
+            return this.$store.state.rolls2
         },
         sum() {
-            return store.state.sum
+            return this.$store.state.sum
         },
         sum2() {
-            return store.state.sum2
+            return this.$store.state.sum2
         }
     },
     data: function() {
@@ -226,9 +226,9 @@ const Dice = {
     methods: {
         diceRoll: function() {
             //this.outcome = Math.floor(Math.random() * 6 + 1);
-            store.state.outcome = Math.floor(Math.random() * 6 + 1);
-            store.state.rolls++;
-            store.state.sum = store.state.sum + store.state.outcome;
+            this.$store.state.outcome = Math.floor(Math.random() * 6 + 1);
+            this.$store.state.rolls++;
+            this.$store.state.sum = this.$store.state.sum + this.$store.state.outcome;
             /*router.push({
                 query: {
                     vuedice: this.outcome,
@@ -238,9 +238,9 @@ const Dice = {
         },
         diceRollImported: function() {
             //this.outcome2 = diceRollHelper();
-            store.state.outcome2 = diceRollHelper();
-            store.state.rolls2++;
-            store.state.sum2 = store.state.sum2 + store.state.outcome2;
+            this.$store.state.outcome2 = diceRollHelper();
+            this.$store.state.rolls2++;
+            this.$store.state.sum2 = this.$store.state.sum2 + this.$store.state.outcome2;
             /*router.push({
                 query: {
                     vuedice: this.outcome,
@@ -249,7 +249,7 @@ const Dice = {
             });*/
         },
         counter: function() {
-            store.state.count++
+            this.$store.state.count++
         }
     }
 }

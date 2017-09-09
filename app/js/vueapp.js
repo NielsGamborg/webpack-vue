@@ -76,6 +76,7 @@ const store = new Vuex.Store({
 
 const VueApp = new Vue({
     router,
+    store,
     el: '#app',
     data: {
         stamps: {},
