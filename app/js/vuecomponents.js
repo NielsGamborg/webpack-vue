@@ -229,24 +229,24 @@ const Dice = {
             this.$store.state.outcome = Math.floor(Math.random() * 6 + 1);
             this.$store.state.rolls++;
             this.$store.state.sum = this.$store.state.sum + this.$store.state.outcome;
-            /*this.$router.push({
+            this.$router.push({
                 query: {
-                    vuedice: this.outcome,
-                    vanilladice: this.outcome2,
+                    vuedice: this.$store.state.outcome,
+                    vanilladice: this.$store.state.outcome2,
                 }
-            });*/
+            });
         },
         diceRollImported: function() {
             //this.outcome2 = diceRollHelper();
             this.$store.state.outcome2 = diceRollHelper();
             this.$store.state.rolls2++;
             this.$store.state.sum2 = this.$store.state.sum2 + this.$store.state.outcome2;
-            /*this.$router.push({
+            this.$router.push({
                 query: {
-                    vuedice: this.outcome,
-                    vanilladice: this.outcome2,
+                    vuedice: this.$store.state.outcome,
+                    vanilladice: this.$store.state.outcome2,
                 }
-            });*/
+            });
         },
         counter: function() {
             this.$store.state.count++
