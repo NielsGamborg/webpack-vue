@@ -242,8 +242,8 @@ const Dice = {
             this.$store.commit('plus10')
         },
         resetcounter: function() {
-            //this.$store.commit('resetcounter');
-            this.$store.state.count = 0;
+            this.$store.commit('resetcounter');
+            //this.$store.state.count = 0;
         }
     }
 }
