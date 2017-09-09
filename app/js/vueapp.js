@@ -54,8 +54,13 @@ const router = new VueRouter({
 const store = new Vuex.Store({
     state: {
         count: 0,
+        pagecount: 1,
         outcome: '?',
-        outcome2: '?'
+        outcome2: '?',
+        rolls: 0,
+        rolls2: 0,
+        sum: 0,
+        sum2: 0
     },
     mutations: {
         increment(state) {

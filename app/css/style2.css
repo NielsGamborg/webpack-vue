@@ -56,6 +56,9 @@ td {
 
 .dicetable {
     border: 0;
+}
+
+.dicetable .result {
     font-size: 30px;
 }
 

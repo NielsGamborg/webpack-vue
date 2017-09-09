@@ -23,9 +23,15 @@ const Title = {
 
 const Routeinfo = {
     props: [],
+    computed: {
+        pagecount() {
+            return store.state.pagecount;
+        }
+    },
     template: `
         <div id="routeinfo">
             <h3>Route info</h3>
+            <p>Route change: {{this.pagecount}}</p>
             <h4>Route to</h4>
             <ul>
                 <li>Route path: {{ this.routeTo.path}}</li>
@@ -58,6 +64,7 @@ const Routeinfo = {
         '$route' (to, from) {
             this.routeFrom = from;
             this.routeTo = to;
+            store.state.pagecount++;
         }
     },
     created: function() {
@@ -170,6 +177,18 @@ const Dice = {
         },
         outcome2() {
             return store.state.outcome2
+        },
+        rolls() {
+            return store.state.rolls
+        },
+        rolls2() {
+            return store.state.rolls2
+        },
+        sum() {
+            return store.state.sum
+        },
+        sum2() {
+            return store.state.sum2
         }
     },
     data: function() {
@@ -184,14 +203,21 @@ const Dice = {
             <table class="dicetable">
                 <tr>
                     <td><button v-on:click="diceRoll()">Roll Vue dice</button></td>
-                    <td>{{ this.outcome }}</td>
+                    <td class="result">{{ this.outcome }}</td>
+                    <td>Total rolls: {{ this.rolls }}</td>
+                    <td>Sum: {{ this.sum }}</td>
+                    <td>Average: <span v-if='this.rolls > 0' >{{ +(this.sum / this.rolls).toFixed(2) }}</span></td>
                 </tr>
                 <tr>
                     <td><button v-on:click="diceRollImported()">Roll Vanilla dice</button></td>
-                    <td>{{ this.outcome2 }}</td>
+                    <td class="result">{{ this.outcome2 }}</td>
+                    <td>Total rolls: {{ this.rolls2 }}</td>
+                    <td>Sum: {{ this.sum2 }} </td>
+                    <td>Average: <span v-if='this.rolls2 > 0' >{{ +(this.sum2/ this.rolls2).toFixed(2) }}</span></td>
                 </tr>
             </table>
             <div>
+            <br><hr>
                 <button v-on:click="counter()"">+1</button>
                 <p>{{this.count}}</p>
             </div>
@@ -201,6 +227,8 @@ const Dice = {
         diceRoll: function() {
             //this.outcome = Math.floor(Math.random() * 6 + 1);
             store.state.outcome = Math.floor(Math.random() * 6 + 1);
+            store.state.rolls++;
+            store.state.sum = store.state.sum + store.state.outcome;
             /*router.push({
                 query: {
                     vuedice: this.outcome,
@@ -211,6 +239,8 @@ const Dice = {
         diceRollImported: function() {
             //this.outcome2 = diceRollHelper();
             store.state.outcome2 = diceRollHelper();
+            store.state.rolls2++;
+            store.state.sum2 = store.state.sum2 + store.state.outcome2;
             /*router.push({
                 query: {
                     vuedice: this.outcome,
