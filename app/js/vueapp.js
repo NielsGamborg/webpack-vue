@@ -60,11 +60,12 @@ const store = new Vuex.Store({
         rolls: 0,
         rolls2: 0,
         sum: 0,
-        sum2: 0
+        sum2: 0,
+        user: ''
     },
     mutations: {
         increment(state) {
-            state.count++
+            state.count = statecount + 10;
         },
         diceRoll(state) {
             state.outcome = 11

@@ -75,15 +75,19 @@ const Routeinfo = {
 
 const Stamps = {
     props: [],
+    computed: {
+        user() {
+            return this.$store.state.user;
+        }
+    },
     data: function() {
         return {
             stamps: {},
-            user: '',
+            usermodel: this.$store.state.user,
             stampNumbers: 20,
             stampType: '',
             url: '',
             error: false,
-            allUsers: ['nig', 'teg'],
             fileData: fileData
         }
     },
@@ -91,7 +95,7 @@ const Stamps = {
         <div id="table-box">
             <h3>Ind og udstemplinger på SB</h3>
             <div id="userInput">
-                Initialer: <input type="text "v-model="user" v-on:keyup.enter="getData()">
+                Initialer: <input type="text "v-model="usermodel" v-on:keyup.enter="getData(usermodel)">
                 Vis seneste: <select v-model="stampNumbers">
                     <option value="20">20</option> 
                     <option value="100">100</option> 
@@ -102,7 +106,7 @@ const Stamps = {
                 Alle:<input type="radio" name="stampType" v-model="stampType" value="" /> 
                 Ind:<input type="radio" name="stampType" v-model="stampType" value="ind" /> 
                 Ud:<input type="radio" name="stampType" v-model="stampType" value="ud" /> 
-                <button v-on:click="getData()">Fetch data</button>
+                <button v-on:click="getData(usermodel)">Fetch data</button>
             </div>
             
             <div v-if="error && this.user.length > 1" class="error">
@@ -122,42 +126,31 @@ const Stamps = {
             </template>
         </div>   
     `,
-    watch: {
-        user: _.debounce(function() {
-            if (this.user.length > 1) {
-                this.getData();
-            }
-        }, 300)
-    },
     methods: {
         getData: function() {
-            if (this.allUsers.includes(this.user)) {
-                console.log('user exists');
-                this.url = '/spot-service/spot/services/medarbejder/access/' + this.user;
-                this.$http.get(this.url).then(response => {
-                    this.stamps = response.body;
-                    this.error = false;
-                    console.log('response.body', response.body);
-                    this.$router.push({ //pushing user to URL if success
-                        query: {
-                            user: this.user,
-                        }
-                    });
-                }, response => {
-                    console.log('Error!', response);
-                    this.stamps = {};
-                    this.error = true; // Use if online
-                    /*  Use if offline
-                    this.error = false; 
-                    this.$router.push({ //pushing hardcoded user to URL if offline
-                        query: {
-                            user: this.user,
-                        }
-                    });*/
-                });
-            } else {
-                console.log("user doesn't exist")
-            }
+            this.$store.state.user = this.usermodel;
+            this.url = '/spot-service/spot/services/medarbejder/access/' + this.$store.state.user;
+            this.$http.get(this.url).then(response => {
+                this.stamps = response.body;
+                this.error = false;
+                console.log('response.body', response.body);
+                /*this.$router.push({ //pushing user to URL if success
+                    query: {
+                        user: this.user,
+                    }
+                });*/
+            }, response => {
+                console.log('Error!', response);
+                this.stamps = {};
+                this.error = true; // Use if online
+                /*  Use if offline
+                this.error = false; 
+                this.$router.push({ //pushing hardcoded user to URL if offline
+                    query: {
+                        user: this.user,
+                    }
+                });*/
+            });
         }
     },
     created: function() {
