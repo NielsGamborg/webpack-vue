@@ -65,7 +65,19 @@ const store = new Vuex.Store({
         rolls2: 0,
         sum: 0,
         sum2: 0,
-        user: ''
+        user: '',
+        diceObj: {
+            vue: {
+                outcome: '?',
+                rolls: 0,
+                sum: 0,
+            },
+            vanilla: {
+                outcome2: '?',
+                rolls2: 0,
+                sum2: 0,
+            }
+        }
     },
     mutations: {
         plus10(state) {
