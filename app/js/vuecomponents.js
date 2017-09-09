@@ -128,7 +128,8 @@ const Stamps = {
     `,
     methods: {
         getData: function() {
-            this.$store.state.user = this.usermodel;
+            //this.$store.state.user = this.usermodel;
+            this.$store.commit('setUser', this.usermodel);
             this.url = '/spot-service/spot/services/medarbejder/access/' + this.$store.state.user;
             this.$http.get(this.url).then(response => {
                 this.stamps = response.body;
@@ -203,6 +204,7 @@ const Dice = {
                     <td>Average: <span v-if='this.rolls2 > 0' >{{ +(this.sum2/ this.rolls2).toFixed(2) }}</span></td>
                 </tr>
             </table>
+            <div><button v-on:click="resetDice()">Reset Dices</button></div>
             <div>
             <br><hr>
                 <button v-on:click="counter()">+1</button> <button v-on:click="doublecounter()">+10</button><button v-on:click="resetcounter()">Reset</button>
@@ -216,24 +218,24 @@ const Dice = {
             this.$store.state.outcome = Math.floor(Math.random() * 6 + 1);
             this.$store.state.rolls++;
             this.$store.state.sum = this.$store.state.sum + this.$store.state.outcome;
-            this.$router.push({
+            /*this.$router.push({
                 query: {
                     vuedice: this.$store.state.outcome,
                     vanilladice: this.$store.state.outcome2,
                 }
-            });
+            });*/
         },
         diceRollImported: function() {
             //this.outcome2 = diceRollHelper();
             this.$store.state.outcome2 = diceRollHelper();
             this.$store.state.rolls2++;
             this.$store.state.sum2 = this.$store.state.sum2 + this.$store.state.outcome2;
-            this.$router.push({
+            /*this.$router.push({
                 query: {
                     vuedice: this.$store.state.outcome,
                     vanilladice: this.$store.state.outcome2,
                 }
-            });
+            });*/
         },
         counter: function() {
             this.$store.state.count++
@@ -244,6 +246,9 @@ const Dice = {
         resetcounter: function() {
             this.$store.commit('resetcounter');
             //this.$store.state.count = 0;
+        },
+        resetDice: function() {
+            this.$store.commit('resetDice');
         }
     }
 }

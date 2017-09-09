@@ -73,6 +73,17 @@ const store = new Vuex.Store({
         },
         resetcounter(state) {
             state.count = 0;
+        },
+        setUser(state, user) {
+            state.user = user;
+        },
+        resetDice(state) {
+            state.outcome = '?';
+            state.outcome2 = '?';
+            state.rolls = 0;
+            state.rolls2 = 0;
+            state.sum = 0;
+            state.sum2 = 0;
         }
     }
 })
