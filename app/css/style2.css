@@ -46,12 +46,22 @@ table {
     border-collapse: collapse;
 }
 
-tr:nth-child(even) {
+.table tr:nth-child(even) {
     background-color: #f0f0f3;
 }
 
 td {
     padding: .5em 1em;
+}
+
+.dicetable {
+    border: 0;
+    font-size: 30px;
+}
+
+.dicetable td {
+    padding-left: 0;
+    ;
 }
 
 .error {

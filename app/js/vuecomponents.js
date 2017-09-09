@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 /* Internal Vue stuff */
 import { router } from './vueapp.js';
+import { store } from './vueapp.js';
 
 /* Internal vanilla JS function */
 import { helloHelper, diceRollHelper } from './helperFunctions.js'
@@ -101,7 +102,7 @@ const Stamps = {
                 <p>Username: "{{ user }}" doesn't exists in the spot service</p>
             </div>
             <template v-if="!error && this.user !== ''">    
-                <table>
+                <table class="table">
                     <tbody>
                         <tr v-for="(item, index) in stamps" v-if="item.wintidStempKodeTekst.toLowerCase().includes(stampType) && index < stampNumbers"> <!-- Use if online -->
                         <!-- <tr v-for="(item, index) in fileData" v-if="item.wintidStempKodeTekst.toLowerCase().includes(stampType)"> <!-- Use if offline -->
@@ -160,44 +161,66 @@ const Stamps = {
 
 const Dice = {
     props: [],
+    computed: {
+        count() {
+            return store.state.count
+        },
+        outcome() {
+            return store.state.outcome
+        },
+        outcome2() {
+            return store.state.outcome2
+        }
+    },
     data: function() {
         return {
-            outcome: '',
-            outcome2: '',
+            //outcome: '?',
+            //outcome2: '?',
         }
     },
     template: `
         <div>
             <h3>Dices</h3>
-            <button v-on:click="diceRoll()">Roll Vue dice</button>
-            <p>{{ this.outcome }}</p>
-            <button v-on:click="diceRollImported()">Roll Vanilla dice</button>
-            <p>{{ this.outcome2 }}</p>
+            <table class="dicetable">
+                <tr>
+                    <td><button v-on:click="diceRoll()">Roll Vue dice</button></td>
+                    <td>{{ this.outcome }}</td>
+                </tr>
+                <tr>
+                    <td><button v-on:click="diceRollImported()">Roll Vanilla dice</button></td>
+                    <td>{{ this.outcome2 }}</td>
+                </tr>
+            </table>
+            <div>
+                <button v-on:click="counter()"">+1</button>
+                <p>{{this.count}}</p>
+            </div>
         </div>    
     `,
     methods: {
         diceRoll: function() {
-            this.outcome = Math.floor(Math.random() * 6 + 1);
-            router.push({
+            //this.outcome = Math.floor(Math.random() * 6 + 1);
+            store.state.outcome = Math.floor(Math.random() * 6 + 1);
+            /*router.push({
                 query: {
                     vuedice: this.outcome,
                     vanilladice: this.outcome2,
                 }
-            });
+            });*/
         },
         diceRollImported: function() {
-            this.outcome2 = diceRollHelper();
-            router.push({
+            //this.outcome2 = diceRollHelper();
+            store.state.outcome2 = diceRollHelper();
+            /*router.push({
                 query: {
                     vuedice: this.outcome,
                     vanilladice: this.outcome2,
                 }
-            });
+            });*/
+        },
+        counter: function() {
+            store.state.count++
         }
-    },
-    created: function() {
-        this.diceRoll();
-        this.diceRollImported();
     }
 }
 

@@ -2,9 +2,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import Vuex from 'vuex'
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(Vuex);
 
 /* Internal Vue stuff */
 import { Title, Stamps, Dice, Foo, Bar, Page404, Routeinfo, BarHome, BarBar, BarFoo } from './vuecomponents.js';
@@ -49,6 +51,22 @@ const router = new VueRouter({
     ]
 });
 
+const store = new Vuex.Store({
+    state: {
+        count: 0,
+        outcome: '?',
+        outcome2: '?'
+    },
+    mutations: {
+        increment(state) {
+            state.count++
+        },
+        diceRoll(state) {
+            state.outcome = 11
+        }
+    }
+})
+
 
 
 const VueApp = new Vue({
@@ -84,4 +102,4 @@ const VueApp = new Vue({
     }
 })
 
-export { VueApp, router };
+export { VueApp, router, store };
