@@ -4,6 +4,9 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import Vuex from 'vuex'
 
+/* Vue plugins  */
+import createPersistedState from 'vuex-persistedstate'
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Vuex);
@@ -52,6 +55,7 @@ const router = new VueRouter({
 });
 
 const store = new Vuex.Store({
+    plugins: [createPersistedState()],
     state: {
         count: 0,
         pagecount: 0,
