@@ -184,12 +184,6 @@ const Dice = {
             return this.$store.state.sum2
         }
     },
-    data: function() {
-        return {
-            //outcome: '?',
-            //outcome2: '?',
-        }
-    },
     template: `
         <div>
             <h3>Dices</h3>
@@ -211,7 +205,7 @@ const Dice = {
             </table>
             <div>
             <br><hr>
-                <button v-on:click="counter()"">+1</button>
+                <button v-on:click="counter()">+1</button> <button v-on:click="doublecounter()">+10</button><button v-on:click="resetcounter()">Reset</button>
                 <p>{{this.count}}</p>
             </div>
         </div>    
@@ -243,6 +237,13 @@ const Dice = {
         },
         counter: function() {
             this.$store.state.count++
+        },
+        doublecounter: function() {
+            this.$store.commit('plus10')
+        },
+        resetcounter: function() {
+            //this.$store.commit('resetcounter');
+            this.$store.state.count = 0;
         }
     }
 }
