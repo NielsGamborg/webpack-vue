@@ -58,7 +58,7 @@ const store = new Vuex.Store({
     //plugins: [createPersistedState()], //saves state to local storage to keep state at reload 
     state: {
         count: 0,
-        pagecount: 0,
+        routechange: 0,
         user: '',
         diceObj: {
             vuedice: {

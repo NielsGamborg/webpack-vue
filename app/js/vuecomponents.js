@@ -20,14 +20,14 @@ const Title = {
 const Routeinfo = {
     props: [],
     computed: {
-        pagecount() {
-            return this.$store.state.pagecount;
+        routechange() {
+            return this.$store.state.routechange;
         }
     },
     template: `
         <div id="routeinfo">
             <h3>Route info</h3>
-            <p>Route change: {{this.pagecount}}</p>
+            <p>Route change: {{this.routechange}}</p>
             <h4>Route to</h4>
             <ul>
                 <li>Route path: {{ this.routeTo.path}}</li>
@@ -60,7 +60,7 @@ const Routeinfo = {
         '$route' (to, from) {
             this.routeFrom = from;
             this.routeTo = to;
-            this.$store.state.pagecount++;
+            this.$store.state.routechange++;
         }
     },
     created: function() {
