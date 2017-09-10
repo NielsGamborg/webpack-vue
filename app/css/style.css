@@ -23,6 +23,10 @@ h3 {
     text-transform: uppercase;
 }
 
+.small {
+    font-size: 80%;
+}
+
 
 /* Menus */
 

@@ -78,7 +78,10 @@ const Stamps = {
     computed: {
         user() {
             return this.$store.state.user;
-        }
+        },
+        count() {
+            return this.$store.state.count
+        },
     },
     data: function() {
         return {
@@ -124,6 +127,11 @@ const Stamps = {
                     </tbody>   
                 </table>
             </template>
+            <div>
+            <br><br><hr><br>
+            <p>Count: {{ this.count }}</p>
+            
+            </div>
         </div>   
     `,
     methods: {
@@ -204,10 +212,10 @@ const Dice = {
                     <td>Average: <span v-if='this.rolls2 > 0' >{{ +(this.sum2/ this.rolls2).toFixed(2) }}</span></td>
                 </tr>
             </table>
-            <div><button v-on:click="resetDice()">Reset Dices</button></div>
+            <div><button v-on:click="resetDice()" class="small">Reset Dices</button></div>
             <div>
             <br><hr>
-                <button v-on:click="counter()">+1</button> <button v-on:click="doublecounter()">+10</button><button v-on:click="resetcounter()">Reset</button>
+                <button v-on:click="counter()">+1</button> <button v-on:click="doublecounter()">+10</button><button v-on:click="resetcounter()" class="small">Reset Count</button>
                 <p>{{this.count}}</p>
             </div>
         </div>    

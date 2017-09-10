@@ -11,7 +11,7 @@ npm install
 # build for devel
 npm run build
 
-# start webpack-dev-server at port 8081
+# start webpack-dev-server at http://localhost:8081/
 npm start
 
 ```
