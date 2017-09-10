@@ -5,7 +5,7 @@ import VueResource from 'vue-resource';
 import Vuex from 'vuex'
 
 /* Vue plugins  */
-import createPersistedState from 'vuex-persistedstate'
+import createPersistedState from 'vuex-persistedstate'; //saves state to local storage to keep state at reload 
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -55,27 +55,21 @@ const router = new VueRouter({
 });
 
 const store = new Vuex.Store({
-    plugins: [createPersistedState()],
+    plugins: [createPersistedState()], //saves state to local storage to keep state at reload 
     state: {
         count: 0,
         pagecount: 0,
-        outcome: '?',
-        outcome2: '?',
-        rolls: 0,
-        rolls2: 0,
-        sum: 0,
-        sum2: 0,
         user: '',
         diceObj: {
-            vue: {
+            vuedice: {
                 outcome: '?',
                 rolls: 0,
                 sum: 0,
             },
-            vanilla: {
-                outcome2: '?',
-                rolls2: 0,
-                sum2: 0,
+            vanilladice: {
+                outcome: '?',
+                rolls: 0,
+                sum: 0,
             }
         }
     },
@@ -89,13 +83,22 @@ const store = new Vuex.Store({
         setUser(state, user) {
             state.user = user;
         },
+        updateDice(state, diceObj) {
+            state.diceObj = diceObj
+        },
         resetDice(state) {
-            state.outcome = '?';
-            state.outcome2 = '?';
-            state.rolls = 0;
-            state.rolls2 = 0;
-            state.sum = 0;
-            state.sum2 = 0;
+            state.diceObj = {
+                vuedice: {
+                    outcome: '?',
+                    rolls: 0,
+                    sum: 0,
+                },
+                vanilladice: {
+                    outcome: '?',
+                    rolls: 0,
+                    sum: 0,
+                }
+            }
         }
     }
 })

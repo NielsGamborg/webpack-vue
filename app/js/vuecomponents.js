@@ -1,10 +1,6 @@
 /* External packages */
 import _ from 'lodash'
 
-/* Internal Vue stuff */
-//import { router } from './vueapp.js';
-//import { store } from './vueapp.js';
-
 /* Internal vanilla JS function */
 import { helloHelper, diceRollHelper } from './helperFunctions.js'
 
@@ -153,12 +149,8 @@ const Stamps = {
                 this.stamps = {};
                 this.error = true; // Use if online
                 /*  Use if offline
-                this.error = false; 
-                this.$router.push({ //pushing hardcoded user to URL if offline
-                    query: {
-                        user: this.user,
-                    }
-                });*/
+                this.error = false;
+                */
             });
         }
     },
@@ -174,24 +166,9 @@ const Dice = {
         count() {
             return this.$store.state.count
         },
-        outcome() {
-            return this.$store.state.outcome
+        diceObj() {
+            return this.$store.state.diceObj
         },
-        outcome2() {
-            return this.$store.state.outcome2
-        },
-        rolls() {
-            return this.$store.state.rolls
-        },
-        rolls2() {
-            return this.$store.state.rolls2
-        },
-        sum() {
-            return this.$store.state.sum
-        },
-        sum2() {
-            return this.$store.state.sum2
-        }
     },
     template: `
         <div>
@@ -199,17 +176,17 @@ const Dice = {
             <table class="dicetable">
                 <tr>
                     <td><button v-on:click="diceRoll()">Roll Vue dice</button></td>
-                    <td class="result">{{ this.outcome }}</td>
-                    <td>Total rolls: {{ this.rolls }}</td>
-                    <td>Sum: {{ this.sum }}</td>
-                    <td>Average: <span v-if='this.rolls > 0' >{{ +(this.sum / this.rolls).toFixed(2) }}</span></td>
+                    <td class="result">{{ this.diceObj.vuedice.outcome }}</td>
+                    <td>Total rolls: {{ this.diceObj.vuedice.rolls }}</td>
+                    <td>Sum: {{ this.diceObj.vuedice.sum }}</td>
+                    <td>Average: <span v-if='this.diceObj.vuedice.rolls > 0' >{{ +(this.diceObj.vuedice.sum / this.diceObj.vuedice.rolls).toFixed(2) }}</span></td>
                 </tr>
                 <tr>
                     <td><button v-on:click="diceRollImported()">Roll Vanilla dice</button></td>
-                    <td class="result">{{ this.outcome2 }}</td>
-                    <td>Total rolls: {{ this.rolls2 }}</td>
-                    <td>Sum: {{ this.sum2 }} </td>
-                    <td>Average: <span v-if='this.rolls2 > 0' >{{ +(this.sum2/ this.rolls2).toFixed(2) }}</span></td>
+                    <td class="result">{{ this.diceObj.vanilladice.outcome }}</td>
+                    <td>Total rolls: {{ this.diceObj.vanilladice.rolls }}</td>
+                    <td>Sum: {{ this.diceObj.vanilladice.sum }} </td>
+                    <td>Average: <span v-if='this.diceObj.vanilladice.rolls > 0' >{{ +(this.diceObj.vanilladice.sum/ this.diceObj.vanilladice.rolls).toFixed(2) }}</span></td>
                 </tr>
             </table>
             <div><button v-on:click="resetDice()" class="small">Reset Dices</button></div>
@@ -222,10 +199,11 @@ const Dice = {
     `,
     methods: {
         diceRoll: function() {
-            //this.outcome = Math.floor(Math.random() * 6 + 1);
-            this.$store.state.outcome = Math.floor(Math.random() * 6 + 1);
-            this.$store.state.rolls++;
-            this.$store.state.sum = this.$store.state.sum + this.$store.state.outcome;
+            let result = Math.floor(Math.random() * 6 + 1);
+            this.diceObj.vuedice.outcome = result;
+            this.diceObj.vuedice.rolls++;
+            this.diceObj.vuedice.sum = this.diceObj.vuedice.sum + result;
+            this.$store.commit('updateDice', this.diceObj); //Comitting dice object to store
             /*this.$router.push({
                 query: {
                     vuedice: this.$store.state.outcome,
@@ -234,10 +212,11 @@ const Dice = {
             });*/
         },
         diceRollImported: function() {
-            //this.outcome2 = diceRollHelper();
-            this.$store.state.outcome2 = diceRollHelper();
-            this.$store.state.rolls2++;
-            this.$store.state.sum2 = this.$store.state.sum2 + this.$store.state.outcome2;
+            let result = diceRollHelper();
+            this.diceObj.vanilladice.outcome = result;
+            this.diceObj.vanilladice.rolls++;
+            this.diceObj.vanilladice.sum = this.diceObj.vanilladice.sum + result;
+            this.$store.commit('updateDice', this.diceObj); //Comitting dice object to store
             /*this.$router.push({
                 query: {
                     vuedice: this.$store.state.outcome,
