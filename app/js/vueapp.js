@@ -5,7 +5,7 @@ import VueResource from 'vue-resource';
 import Vuex from 'vuex'
 
 /* Vue plugins  */
-import createPersistedState from 'vuex-persistedstate'; //saves state to local storage to keep state at reload 
+//import createPersistedState from 'vuex-persistedstate'; //saves state to local storage to keep state at reload 
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -55,7 +55,7 @@ const router = new VueRouter({
 });
 
 const store = new Vuex.Store({
-    plugins: [createPersistedState()], //saves state to local storage to keep state at reload 
+    //plugins: [createPersistedState()], //saves state to local storage to keep state at reload 
     state: {
         count: 0,
         pagecount: 0,
