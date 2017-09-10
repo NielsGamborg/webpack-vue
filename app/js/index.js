@@ -11,5 +11,6 @@ import { helloHelper } from './helperFunctions.js'
 import '../css/style.css';
 import '../css/style2.css';
 import '../img/metal.jpg';
+import '../img/ravenna.png';
 
 helloHelper('from index.js');
