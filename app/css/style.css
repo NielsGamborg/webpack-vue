@@ -8,6 +8,7 @@ body {
 
 .wrapper {
     background-color: white;
+    box-shadow: 0 0 5px 5px #ddd;
     min-height: 800px;
     margin: 0 auto;
     padding: .5em 2em 4em;

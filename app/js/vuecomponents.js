@@ -139,11 +139,11 @@ const Stamps = {
                 this.stamps = response.body;
                 this.error = false;
                 console.log('response.body', response.body);
-                /*this.$router.push({ //pushing user to URL if success
+                this.$router.push({ //pushing user to URL if success
                     query: {
-                        user: this.user,
+                        user: this.$store.state.user,
                     }
-                });*/
+                });
             }, response => {
                 console.log('Error!', response);
                 this.stamps = {};
