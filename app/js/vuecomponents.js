@@ -27,11 +27,11 @@ const Routeinfo = {
     template: `
         <div id="routeinfo">
             <h3>Route info</h3>
-            <p>Route change: {{this.routechange}}</p>
+            <p>Route change: {{routechange}}</p>
             <h4>Route to</h4>
             <ul>
-                <li>Route path: {{ this.routeTo.path}}</li>
-                <li v-if="routeTo.path !== routeTo.fullPath">Route full path: {{ this.routeTo.fullPath}}</li>
+                <li>Route path: {{ routeTo.path}}</li>
+                <li v-if="routeTo.path !== routeTo.fullPath">Route full path: {{ routeTo.fullPath}}</li>
                 <li v-if="!_.isEmpty(routeTo.query)" >Route query params: 
                     <ul>
                         <li v-for="(value, key)  in routeTo.query">{{ key }}: {{value }}</li>
@@ -40,8 +40,8 @@ const Routeinfo = {
             </ul>
             <h4>Route from</h4>
             <ul>
-                <li>Route path: {{ this.routeFrom.path}}</li>
-                <li v-if="routeFrom.path !== routeFrom.fullPath">Route full path: {{ this.routeFrom.fullPath}}</li>
+                <li>Route path: {{ routeFrom.path}}</li>
+                <li v-if="routeFrom.path !== routeFrom.fullPath">Route full path: {{ routeFrom.fullPath}}</li>
                 <li v-if="!_.isEmpty(routeFrom.query)" >Route query params: 
                     <ul>
                         <li v-for="(value, key)  in routeFrom.query">{{ key }}: {{value }}</li>
@@ -111,7 +111,7 @@ const Stamps = {
             <div v-if="error && this.user.length > 1" class="error">
                 <p>Username: "{{ user }}" doesn't exists in the spot service</p>
             </div>
-            <template v-if="!error && this.user !== ''">    
+            <template v-if="!error && user !== ''">    
                 <table class="table">
                     <tbody>
                         <tr v-for="(item, index) in stamps" v-if="item.wintidStempKodeTekst.toLowerCase().includes(stampType) && index < stampNumbers"> <!-- Use if online -->
@@ -176,24 +176,24 @@ const Dice = {
             <table class="dicetable">
                 <tr>
                     <td><button v-on:click="diceRoll()">Roll Vue dice</button></td>
-                    <td class="result">{{ this.diceObj.vuedice.outcome }}</td>
-                    <td>Rolls: {{ this.diceObj.vuedice.rolls }}</td>
-                    <td>Total: {{ this.diceObj.vuedice.total }}</td>
-                    <td>Average: <span v-if='this.diceObj.vuedice.rolls > 0' >{{ +(this.diceObj.vuedice.total / this.diceObj.vuedice.rolls).toFixed(2) }}</span></td>
+                    <td class="result">{{ diceObj.vuedice.outcome }}</td>
+                    <td>Rolls: {{ diceObj.vuedice.rolls }}</td>
+                    <td>Total: {{ diceObj.vuedice.total }}</td>
+                    <td>Average: <span v-if='diceObj.vuedice.rolls > 0' >{{ +(diceObj.vuedice.total / diceObj.vuedice.rolls).toFixed(2) }}</span></td>
                 </tr>
                 <tr>
                     <td><button v-on:click="diceRollImported()">Roll Vanilla dice</button></td>
-                    <td class="result">{{ this.diceObj.vanilladice.outcome }}</td>
-                    <td>Rolls: {{ this.diceObj.vanilladice.rolls }}</td>
-                    <td>Total: {{ this.diceObj.vanilladice.total }} </td>
-                    <td>Average: <span v-if='this.diceObj.vanilladice.rolls > 0' >{{ +(this.diceObj.vanilladice.total/ this.diceObj.vanilladice.rolls).toFixed(2) }}</span></td>
+                    <td class="result">{{ diceObj.vanilladice.outcome }}</td>
+                    <td>Rolls: {{ diceObj.vanilladice.rolls }}</td>
+                    <td>Total: {{ diceObj.vanilladice.total }} </td>
+                    <td>Average: <span v-if='diceObj.vanilladice.rolls > 0' >{{ +(diceObj.vanilladice.total/ diceObj.vanilladice.rolls).toFixed(2) }}</span></td>
                 </tr>
             </table>
             <div><button v-on:click="resetDice()" class="small">Reset Dices</button></div>
             <div>
             <br><br><hr><br><br>
                 <button v-on:click="counter()">+1</button> <button v-on:click="doublecounter()">+10</button><button v-on:click="resetcounter()" class="small">Reset Count</button>
-                <p>{{this.count}}</p>
+                <p>{{count}}</p>
             </div>
         </div>    
     `,
