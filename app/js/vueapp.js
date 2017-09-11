@@ -64,12 +64,12 @@ const store = new Vuex.Store({
             vuedice: {
                 outcome: '?',
                 rolls: 0,
-                sum: 0,
+                total: 0,
             },
             vanilladice: {
                 outcome: '?',
                 rolls: 0,
-                sum: 0,
+                total: 0,
             }
         }
     },
@@ -91,12 +91,12 @@ const store = new Vuex.Store({
                 vuedice: {
                     outcome: '?',
                     rolls: 0,
-                    sum: 0,
+                    total: 0,
                 },
                 vanilladice: {
                     outcome: '?',
                     rolls: 0,
-                    sum: 0,
+                    total: 0,
                 }
             }
         }

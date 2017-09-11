@@ -177,21 +177,21 @@ const Dice = {
                 <tr>
                     <td><button v-on:click="diceRoll()">Roll Vue dice</button></td>
                     <td class="result">{{ this.diceObj.vuedice.outcome }}</td>
-                    <td>Total rolls: {{ this.diceObj.vuedice.rolls }}</td>
-                    <td>Sum: {{ this.diceObj.vuedice.sum }}</td>
-                    <td>Average: <span v-if='this.diceObj.vuedice.rolls > 0' >{{ +(this.diceObj.vuedice.sum / this.diceObj.vuedice.rolls).toFixed(2) }}</span></td>
+                    <td>Rolls: {{ this.diceObj.vuedice.rolls }}</td>
+                    <td>Total: {{ this.diceObj.vuedice.total }}</td>
+                    <td>Average: <span v-if='this.diceObj.vuedice.rolls > 0' >{{ +(this.diceObj.vuedice.total / this.diceObj.vuedice.rolls).toFixed(2) }}</span></td>
                 </tr>
                 <tr>
                     <td><button v-on:click="diceRollImported()">Roll Vanilla dice</button></td>
                     <td class="result">{{ this.diceObj.vanilladice.outcome }}</td>
-                    <td>Total rolls: {{ this.diceObj.vanilladice.rolls }}</td>
-                    <td>Sum: {{ this.diceObj.vanilladice.sum }} </td>
-                    <td>Average: <span v-if='this.diceObj.vanilladice.rolls > 0' >{{ +(this.diceObj.vanilladice.sum/ this.diceObj.vanilladice.rolls).toFixed(2) }}</span></td>
+                    <td>Rolls: {{ this.diceObj.vanilladice.rolls }}</td>
+                    <td>Total: {{ this.diceObj.vanilladice.total }} </td>
+                    <td>Average: <span v-if='this.diceObj.vanilladice.rolls > 0' >{{ +(this.diceObj.vanilladice.total/ this.diceObj.vanilladice.rolls).toFixed(2) }}</span></td>
                 </tr>
             </table>
             <div><button v-on:click="resetDice()" class="small">Reset Dices</button></div>
             <div>
-            <br><hr>
+            <br><br><hr><br><br>
                 <button v-on:click="counter()">+1</button> <button v-on:click="doublecounter()">+10</button><button v-on:click="resetcounter()" class="small">Reset Count</button>
                 <p>{{this.count}}</p>
             </div>
@@ -202,7 +202,7 @@ const Dice = {
             let result = Math.floor(Math.random() * 6 + 1);
             this.diceObj.vuedice.outcome = result;
             this.diceObj.vuedice.rolls++;
-            this.diceObj.vuedice.sum = this.diceObj.vuedice.sum + result;
+            this.diceObj.vuedice.total = this.diceObj.vuedice.total + result;
             this.$store.commit('updateDice', this.diceObj); //Comitting dice object to store
             /*this.$router.push({
                 query: {
@@ -215,7 +215,7 @@ const Dice = {
             let result = diceRollHelper();
             this.diceObj.vanilladice.outcome = result;
             this.diceObj.vanilladice.rolls++;
-            this.diceObj.vanilladice.sum = this.diceObj.vanilladice.sum + result;
+            this.diceObj.vanilladice.total = this.diceObj.vanilladice.total + result;
             this.$store.commit('updateDice', this.diceObj); //Comitting dice object to store
             /*this.$router.push({
                 query: {
