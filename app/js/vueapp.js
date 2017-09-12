@@ -7,6 +7,9 @@ import Vuex from "vuex";
 /* Vue plugins  */
 import createPersistedState from "vuex-persistedstate"; //saves state to local storage to keep state at reload
 
+/* External packages */
+import _ from "lodash";
+
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Vuex);
@@ -71,7 +74,7 @@ const router = new VueRouter({
 });
 
 const store = new Vuex.Store({
-  plugins: [createPersistedState()], //saves state to local storage to keep state at reload
+  //plugins: [createPersistedState()], //saves state to local storage to keep state at reload
   //strict: true,
   state: {
     count: 0,
@@ -79,12 +82,12 @@ const store = new Vuex.Store({
     user: "",
     diceObj: {
       vuedice: {
-        outcome: "?",
+        result: "?",
         rolls: 0,
         total: 0
       },
       vanilladice: {
-        outcome: "?",
+        result: "?",
         rolls: 0,
         total: 0
       }
@@ -101,7 +104,8 @@ const store = new Vuex.Store({
       state.user = user;
     },
     updateDice(state, diceObj) {
-      state.diceObj = diceObj;
+      _.assign(state.diceObj, diceObj);
+      //state.diceObj = diceObj;
     },
     setRoutechange(state) {
       state.routechange++;

@@ -174,14 +174,14 @@ const Dice = {
           <table class="dicetable">
             <tr>
               <td><button v-on:click="diceRoll()">Roll Vue dice</button></td>
-              <td class="result">{{ diceObj.vuedice.outcome }}</td>
+              <td class="result">{{ diceObj.vuedice.result }}</td>
               <td>Rolls: {{ diceObj.vuedice.rolls }}</td>
               <td>Total: {{ diceObj.vuedice.total }}</td>
               <td>Average: <span v-if='diceObj.vuedice.rolls > 0' >{{ +(diceObj.vuedice.total / diceObj.vuedice.rolls).toFixed(2) }}</span></td>
             </tr>
             <tr>
               <td><button v-on:click="diceRollImported()">Roll Vanilla dice</button></td>
-              <td class="result">{{ diceObj.vanilladice.outcome }}</td>
+              <td class="result">{{ diceObj.vanilladice.result }}</td>
               <td>Rolls: {{ diceObj.vanilladice.rolls }}</td>
               <td>Total: {{ diceObj.vanilladice.total }} </td>
               <td>Average: <span v-if='diceObj.vanilladice.rolls > 0' >{{ +(diceObj.vanilladice.total/ diceObj.vanilladice.rolls).toFixed(2) }}</span></td>
@@ -198,10 +198,10 @@ const Dice = {
   methods: {
     diceRoll: function() {
       let result = Math.floor(Math.random() * 6 + 1);
-      this.diceObj.vuedice.outcome = result;
-      this.diceObj.vuedice.rolls++;
-      this.diceObj.vuedice.total = this.diceObj.vuedice.total + result;
-      this.$store.commit("updateDice", this.diceObj); //Comitting dice object to store
+      let rolls = this.diceObj.vuedice.rolls + 1;
+      let total = this.diceObj.vuedice.total + result;
+      let vueDice = { vuedice: { rolls: rolls, total: total, result: result } };
+      this.$store.commit("updateDice", vueDice); //Comitting dice object to store
       /*this.$router.push({
         query: {
           vuedice: this.$store.state.outcome,
@@ -211,10 +211,10 @@ const Dice = {
     },
     diceRollImported: function() {
       let result = diceRollHelper();
-      this.diceObj.vanilladice.outcome = result;
-      this.diceObj.vanilladice.rolls++;
-      this.diceObj.vanilladice.total = this.diceObj.vanilladice.total + result;
-      this.$store.commit("updateDice", this.diceObj); //Comitting dice object to store
+      let rolls = this.diceObj.vanilladice.rolls + 1;
+      let total = this.diceObj.vanilladice.total + result;
+      let vanilladice = { vanilladice: { rolls: rolls, total: total, result: result } };
+      this.$store.commit("updateDice", vanilladice); //Comitting dice object to store
     },
     counter: function(value) {
       this.$store.commit("plus", value);
