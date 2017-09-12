@@ -58,7 +58,7 @@ const Routeinfo = {
     $route(to, from) {
       this.routeFrom = from;
       this.routeTo = to;
-      this.$store.state.routechange++;
+      this.$store.commit("setRoutechange");
     }
   },
   created: function() {
@@ -91,7 +91,7 @@ const Stamps = {
         <div id="table-box">
           <h3>Ind og udstemplinger på SB</h3>
           <div id="userInput">
-            Initialer: <input type="text "v-model="usermodel" v-on:keyup.enter="getData(usermodel)">
+            Initialer: <input type="text" ref="userinitials" v-model="usermodel" v-on:keyup.enter="getData(usermodel)">
             Vis seneste: <select v-model="stampNumbers">
               <option value="20">20</option> 
               <option value="100">100</option> 
@@ -128,8 +128,7 @@ const Stamps = {
     `,
   methods: {
     getData: function() {
-      //this.$store.state.user = this.usermodel;
-      this.$store.commit("setUser", this.usermodel);
+      this.$store.commit("setUser", this.$refs.userinitials.value);
       this.url = "/spot-service/spot/services/medarbejder/access/" + this.$store.state.user;
       this.$http.get(this.url).then(
         response => {
@@ -191,7 +190,7 @@ const Dice = {
           <div><button v-on:click="resetDice()" class="small">Reset Dices</button></div>
           <div>
             <br><br><hr><br><br>
-                <button v-on:click="counter()">+1</button> <button v-on:click="doublecounter()">+10</button><button v-on:click="resetcounter()" class="small">Reset Count</button>
+                <button v-on:click="counter(1)">+1</button> <button v-on:click="counter(10)">+10</button><button v-on:click="resetcounter()" class="small">Reset Count</button>
                 <p>{{count}}</p>
           </div>
         </div>    
@@ -204,11 +203,11 @@ const Dice = {
       this.diceObj.vuedice.total = this.diceObj.vuedice.total + result;
       this.$store.commit("updateDice", this.diceObj); //Comitting dice object to store
       /*this.$router.push({
-                                  query: {
-                                      vuedice: this.$store.state.outcome,
-                                      vanilladice: this.$store.state.outcome2,
-                                  }
-                              });*/
+        query: {
+          vuedice: this.$store.state.outcome,
+          vanilladice: this.$store.state.outcome2
+        }
+      });*/
     },
     diceRollImported: function() {
       let result = diceRollHelper();
@@ -216,18 +215,9 @@ const Dice = {
       this.diceObj.vanilladice.rolls++;
       this.diceObj.vanilladice.total = this.diceObj.vanilladice.total + result;
       this.$store.commit("updateDice", this.diceObj); //Comitting dice object to store
-      /*this.$router.push({
-                                  query: {
-                                      vuedice: this.$store.state.outcome,
-                                      vanilladice: this.$store.state.outcome2,
-                                  }
-                              });*/
     },
-    counter: function() {
-      this.$store.state.count++;
-    },
-    doublecounter: function() {
-      this.$store.commit("plus10");
+    counter: function(value) {
+      this.$store.commit("plus", value);
     },
     resetcounter: function() {
       this.$store.commit("resetcounter");
