@@ -4,12 +4,7 @@ const path = require("path");
 module.exports = {
   //entry: './app/index.js',
   devtool: "inline-source-map",
-  plugins: [
-    new CopyWebpackPlugin([
-      // {output}/file.txt
-      { from: "./app/index.html", to: "./dist/index.html" }
-    ])
-  ],
+  plugins: [new CopyWebpackPlugin([{ from: "./app/index.html", to: "./index.html" }])],
   devServer: {
     contentBase: "./dist",
     proxy: {
