@@ -132,9 +132,9 @@ const Stamps = {
       this.url = "/spot-service/spot/services/medarbejder/access/" + this.$store.state.user;
       this.$http.get(this.url).then(
         response => {
-          this.stamps = response.body;
+          this.stamps = response.data;
           this.error = false;
-          console.log("response.body", response.body);
+          console.log("response.data", response.data);
           this.$router.push({
             //pushing user to URL if success
             query: {

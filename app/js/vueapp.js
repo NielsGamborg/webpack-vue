@@ -1,18 +1,20 @@
 /* External Vue stuff */
 import Vue from "vue";
 import VueRouter from "vue-router";
-import VueResource from "vue-resource";
 import Vuex from "vuex";
 
 /* Vue plugins  */
+import axios from "axios";
+import VueAxios from "vue-axios";
 import createPersistedState from "vuex-persistedstate"; //saves state to local storage to keep state at reload
 
 /* External packages */
 import _ from "lodash";
 
 Vue.use(VueRouter);
-Vue.use(VueResource);
+//Vue.use(VueResource);
 Vue.use(Vuex);
+Vue.use(VueAxios, axios);
 
 /* Internal Vue stuff */
 import {
@@ -75,7 +77,7 @@ const router = new VueRouter({
 
 const store = new Vuex.Store({
   //plugins: [createPersistedState()], //saves state to local storage to keep state at reload
-  //strict: true,
+  strict: true,
   state: {
     count: 0,
     routechange: 0,
